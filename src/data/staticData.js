@@ -15,6 +15,7 @@ export const venues = [
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80",
       "https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=800&q=80",
     ],
+    halls: ["Hall A1", "Hall A2", "Hall A3 – Conference Wing", "Full Convention Floor"],
     amenities: ["Stage & Podium", "AV System", "WiFi", "Air Conditioning", "Parking", "Catering"],
     description: "India's most prestigious convention centre, designed for grand exhibitions, product launches, and large-scale corporate events. State-of-the-art facilities with world-class AV infrastructure.",
     rating: 4.9,
@@ -38,6 +39,7 @@ export const venues = [
       "https://images.unsplash.com/photo-1464366400600-7168b8af9bc3?w=800&q=80",
       "https://images.unsplash.com/photo-1478146896981-b80fe463b330?w=800&q=80",
     ],
+    halls: ["Ballroom Main", "Ballroom Annex", "Cocktail Lounge"],
     amenities: ["Dance Floor", "Crystal Chandeliers", "Full Catering", "Floral Decor", "Valet Parking"],
     description: "An opulent ballroom draped in golden elegance — the perfect canvas for weddings, galas, and premium social events. Accommodates up to 500 guests with bespoke setup options.",
     rating: 4.8,
@@ -60,6 +62,7 @@ export const venues = [
     gallery: [
       "https://images.unsplash.com/photo-1462826303086-329426d1aef5?w=800&q=80",
     ],
+    halls: ["Boardroom Alpha", "Boardroom Alpha – Breakout Room A", "Boardroom Alpha – Breakout Room B"],
     amenities: ["Video Conferencing", "Smart Board", "WiFi", "Coffee Bar", "Secretarial Support"],
     description: "A sophisticated boardroom designed for high-stakes meetings and executive retreats. Equipped with cutting-edge conferencing technology and premium furnishings.",
     rating: 4.7,
@@ -83,6 +86,7 @@ export const venues = [
       "https://images.unsplash.com/photo-1475721027785-f74eccf877e2?w=800&q=80",
       "https://images.unsplash.com/photo-1611532736597-de2d4265fba3?w=800&q=80",
     ],
+    halls: ["Pavilion East", "Pavilion West", "Pavilion Full Floor", "Outdoor Forecourt"],
     amenities: ["Booth Setup", "High Ceiling 12m", "Loading Dock", "Electrical Points", "Signage"],
     description: "India's largest indoor exhibition space featuring a 12-metre high ceiling, ideal for trade fairs, auto shows, and large-scale exhibitions with international standards.",
     rating: 4.9,
@@ -105,6 +109,7 @@ export const venues = [
     gallery: [
       "https://images.unsplash.com/photo-1492684223066-81342ee5ff30?w=800&q=80",
     ],
+    halls: ["Sky Terrace Main", "Sky Bar Section", "Open Deck"],
     amenities: ["Open Sky", "City View", "Bar Setup", "Ambient Lighting", "DJ Booth"],
     description: "An exclusive rooftop venue with panoramic city views — ideal for cocktail evenings, product launches under the stars, and intimate corporate gatherings.",
     rating: 4.6,
@@ -125,6 +130,7 @@ export const venues = [
     priceUnit: "per day",
     image: "https://images.unsplash.com/photo-1431540015161-0bf868a2d407?w=800&q=80",
     gallery: [],
+    halls: ["Zeta Main Hall", "Zeta Breakout A", "Zeta Breakout B", "Translation Booth Suite"],
     amenities: ["Theatre Layout", "Breakout Rooms", "Translation Booths", "Recording Studio"],
     description: "A versatile conference suite that transforms from a theatre-style seminar room to a collaborative workshop space. Equipped with simultaneous translation booths.",
     rating: 4.7,
@@ -135,43 +141,59 @@ export const venues = [
   },
 ];
 
+// Booking requests stored in sessionStorage to persist across navigation
 export const bookingRequests = [
   {
     id: "BK-2024-001",
     venue: "The Grand Convention Centre",
+    hall: "Hall A1",
     eventType: "Product Launch",
     organizer: "Rajesh Kumar",
     company: "TechNova Pvt Ltd",
+    industry: "Technology",
+    sector: ["Corporate", "Trade & Exhibition"],
     setupDate: "2024-03-10",
     eventDate: "2024-03-12",
     dismantleDate: "2024-03-13",
     status: "confirmed",
+    eventStatus: "Confirmed",
+    availability: "Booked",
     guests: 500,
     amount: 450000,
   },
   {
     id: "BK-2024-002",
     venue: "The Grand Ballroom",
+    hall: "Ballroom Main",
     eventType: "Wedding Reception",
     organizer: "Priya Sharma",
     company: "Personal",
+    industry: "Events & Entertainment",
+    sector: ["Events & Weddings"],
     setupDate: "2024-03-20",
     eventDate: "2024-03-21",
     dismantleDate: "2024-03-21",
     status: "tentative",
+    eventStatus: "Tentative",
+    availability: "Required",
     guests: 350,
     amount: 120000,
   },
   {
     id: "BK-2024-003",
     venue: "Pavilion Exhibition Hall",
+    hall: "Pavilion Full Floor",
     eventType: "Trade Exhibition",
     organizer: "Anand Mehta",
     company: "EPCH India",
+    industry: "Trade & Commerce",
+    sector: ["Trade & Exhibition", "Government & PSU"],
     setupDate: "2024-04-01",
     eventDate: "2024-04-03",
     dismantleDate: "2024-04-05",
     status: "confirmed",
+    eventStatus: "Confirmed",
+    availability: "Booked",
     guests: 1000,
     amount: 800000,
   },
@@ -179,12 +201,28 @@ export const bookingRequests = [
 
 export const eventTypes = [
   "Conference", "Trade Exhibition", "Product Launch", "Wedding", "Corporate Meeting",
-  "Gala Dinner", "Award Ceremony", "Workshop/Training", "Press Conference", "Other"
+  "Gala Dinner", "Award Ceremony", "Workshop / Training", "Press Conference",
+  "Seminar", "Annual General Meeting", "Cultural Event", "Other"
+];
+
+export const industries = [
+  "Technology", "Healthcare & Pharma", "Manufacturing & Engineering",
+  "Trade & Commerce", "Events & Entertainment", "Fashion & Lifestyle",
+  "Education & Research", "Government & PSU", "Finance & Banking",
+  "Real Estate", "Hospitality & Tourism", "Agriculture", "Other"
 ];
 
 export const sectors = [
   "Hospitality & Tourism", "Corporate", "Trade & Exhibition",
   "Events & Weddings", "Social Events", "Government & PSU", "Education"
+];
+
+export const eventStatuses = [
+  "Tentative", "Confirmed", "Pending Approval", "Cancelled", "Completed", "On Hold"
+];
+
+export const availabilityTypes = [
+  "Booked", "Required"
 ];
 
 export const testimonials = [

@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react'
 import { Link, useLocation } from 'react-router-dom'
-import { Menu, X, ChevronRight, Calendar, BarChart2, Bot, LayoutDashboard } from 'lucide-react'
+import { Menu, X, ChevronRight, Calendar, BarChart2, Bot } from 'lucide-react'
 
 export default function Navbar() {
   const [open, setOpen] = useState(false)
@@ -20,7 +20,6 @@ export default function Navbar() {
     { to: '/venues', label: 'Venues' },
     { to: '/book', label: 'Book Now' },
     { to: '/my-bookings', label: 'My Bookings' },
-    { to: '/dashboard', label: 'Dashboard', icon: LayoutDashboard },
   ]
 
   return (
@@ -39,7 +38,7 @@ export default function Navbar() {
             <div className="absolute inset-0 rounded-lg bg-gold-gradient opacity-0 group-hover:opacity-60 blur-md transition-opacity duration-300" />
           </div>
           <div>
-            <span className="font-display text-xl text-cream tracking-wide">ExpoInn</span>
+            <span className="font-display text-2xl text-cream tracking-wide">ExpoInn</span>
             <span className="block text-gold-500 text-[10px] tracking-[0.25em] uppercase font-sans font-light leading-none">
               Smart Booking Engine
             </span>
@@ -52,7 +51,7 @@ export default function Navbar() {
             <Link
               key={link.to}
               to={link.to}
-              className={`text-xs font-sans font-medium tracking-wide transition-all duration-200 relative group flex items-center gap-1.5 ${
+              className={`text-base font-sans font-medium tracking-wide transition-all duration-200 relative group flex items-center gap-1.5 ${
                 location.pathname === link.to ? 'text-gold-400' : 'text-cream/60 hover:text-cream'
               }`}
             >
@@ -67,7 +66,7 @@ export default function Navbar() {
           ))}
           <Link
             to="/book"
-            className="btn-gold px-5 py-2.5 rounded-lg text-xs flex items-center gap-1.5 ml-2"
+            className="btn-gold px-5 py-2.5 rounded-lg text-base flex items-center gap-1.5 ml-2"
           >
             Request Booking <ChevronRight size={13} />
           </Link>

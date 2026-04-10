@@ -7,9 +7,6 @@ import Venues from './pages/Venues'
 import VenueDetail from './pages/VenueDetail'
 import BookingForm from './pages/BookingForm'
 import MyBookings from './pages/MyBookings'
-import SmartDashboard from './components/dashboard/SmartDashboard'
-import DashboardDemo from './pages/DashboardDemo'
-import './styles/dashboard.css'
 
 function ScrollToTop() {
   const { pathname } = useLocation()
@@ -19,24 +16,27 @@ function ScrollToTop() {
 
 export default function App() {
   const { pathname } = useLocation()
-  const isDashboard = pathname.startsWith('/dashboard')
 
   return (
     <>
       <ScrollToTop />
-      {!isDashboard && <Navbar />}
-      <main>
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/venues" element={<Venues />} />
-          <Route path="/venues/:slug" element={<VenueDetail />} />
-          <Route path="/book" element={<BookingForm />} />
-          <Route path="/my-bookings" element={<MyBookings />} />
-          <Route path="/dashboard-demo" element={<DashboardDemo />} />
-          <Route path="/dashboard" element={<SmartDashboard />} />
-        </Routes>
+      <Navbar />
+      <main className="relative">
+        <div 
+          key={pathname} 
+          className="animate-slide-up"
+          style={{ animationDuration: '0.4s' }}
+        >
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/venues" element={<Venues />} />
+            <Route path="/venues/:slug" element={<VenueDetail />} />
+            <Route path="/book" element={<BookingForm />} />
+            <Route path="/my-bookings" element={<MyBookings />} />
+          </Routes>
+        </div>
       </main>
-      {!isDashboard && <Footer />}
+      <Footer />
     </>
   )
 }
