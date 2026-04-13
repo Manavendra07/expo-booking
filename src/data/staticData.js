@@ -9,7 +9,7 @@ export const venues = [
     location: "Block A, India Exposition Mart",
     price: 150000,
     priceUnit: "per day",
-    image: "https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=800&q=80",
+    image: "https://plus.unsplash.com/premium_photo-1681830416589-b970dd0bd837?q=80&w=1175&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D",
     gallery: [
       "https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=800&q=80",
       "https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=800&q=80",
@@ -148,16 +148,20 @@ export const bookingRequests = [
     venue: "The Grand Convention Centre",
     hall: "Hall A1",
     eventType: "Product Launch",
+    eventName: "TechNova Innovation Summit 2024",
     organizer: "Rajesh Kumar",
     company: "TechNova Pvt Ltd",
     industry: "Technology",
     sector: ["Corporate", "Trade & Exhibition"],
     setupDate: "2024-03-10",
+    setupEndDate: "2024-03-11",
     eventDate: "2024-03-12",
     dismantleDate: "2024-03-13",
+    dismantleEndDate: "2024-03-13",
     status: "confirmed",
     eventStatus: "Confirmed",
     availability: "Booked",
+    primePeriod: "High Demand (HD)",
     guests: 500,
     amount: 450000,
   },
@@ -166,16 +170,20 @@ export const bookingRequests = [
     venue: "The Grand Ballroom",
     hall: "Ballroom Main",
     eventType: "Wedding Reception",
+    eventName: "Sharma-Iyer Wedding Gala",
     organizer: "Priya Sharma",
     company: "Personal",
     industry: "Events & Entertainment",
     sector: ["Events & Weddings"],
     setupDate: "2024-03-20",
+    setupEndDate: "2024-03-20",
     eventDate: "2024-03-21",
     dismantleDate: "2024-03-21",
+    dismantleEndDate: "2024-03-21",
     status: "tentative",
     eventStatus: "Tentative",
     availability: "Required",
+    primePeriod: "High Demand (HD)",
     guests: 350,
     amount: 120000,
   },
@@ -184,20 +192,25 @@ export const bookingRequests = [
     venue: "Pavilion Exhibition Hall",
     hall: "Pavilion Full Floor",
     eventType: "Trade Exhibition",
+    eventName: "EPCH Handicraft & Gift Fair 2024",
     organizer: "Anand Mehta",
     company: "EPCH India",
     industry: "Trade & Commerce",
     sector: ["Trade & Exhibition", "Government & PSU"],
     setupDate: "2024-04-01",
+    setupEndDate: "2024-04-02",
     eventDate: "2024-04-03",
     dismantleDate: "2024-04-05",
+    dismantleEndDate: "2024-04-05",
     status: "confirmed",
     eventStatus: "Confirmed",
     availability: "Booked",
+    primePeriod: "High Demand (HD)",
     guests: 1000,
     amount: 800000,
   },
 ];
+
 
 export const eventTypes = [
   "Conference", "Trade Exhibition", "Product Launch", "Wedding", "Corporate Meeting",
@@ -223,6 +236,11 @@ export const eventStatuses = [
 
 export const availabilityTypes = [
   "Booked", "Required"
+];
+
+export const primePeriods = [
+  "High Demand (HD)",
+  "Low Demand (LD)",
 ];
 
 export const testimonials = [

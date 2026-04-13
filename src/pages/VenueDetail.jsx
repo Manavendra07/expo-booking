@@ -7,6 +7,80 @@ import {
 import { venues } from '../data/staticData'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
+/* ─── Venue Availability Widget ──────────────────────────────────────── */
+function VenueAvailabilityWidget({ venueId, venueName }) {
+  const [selDay, setSelDay] = useState(null)
+  const now = new Date()
+  const year = now.getFullYear()
+  const month = now.getMonth()
+  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+
+  // Deterministic synthetic booking data per venue
+  const bookedMap = {}
+  const seed = (venueId || 1) * 7
+  const slots = [2,5,8,11,14,17,19,22,25,27]
+  slots.forEach((d, i) => {
+    const day = ((d + seed) % 28) + 1
+    bookedMap[day] = i % 3 === 0 ? 'confirmed' : 'tentative'
+  })
+
+  const firstDay = new Date(year, month, 1).getDay()
+  const daysInMonth = new Date(year, month + 1, 0).getDate()
+  const dotColor = { confirmed: '#34d399', tentative: '#fbbf24' }
+  const label = { confirmed: 'Confirmed — Not Available', tentative: 'Tentative — May Open' }
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-3">
+        <span className="text-cream/60 text-[10px] font-sans">{monthNames[month]} {year}</span>
+        <div className="flex gap-3">
+          {[['#34d399','Booked'],['#fbbf24','Tentative'],['rgba(255,255,255,0.25)','Open']].map(([c,l]) => (
+            <div key={l} className="flex items-center gap-1">
+              <div className="w-1.5 h-1.5 rounded-full" style={{background:c}} />
+              <span className="text-cream/55 text-[9px]">{l}</span>
+            </div>
+          ))}
+        </div>
+      </div>
+
+      <div className="grid grid-cols-7 mb-1">
+        {['S','M','T','W','T','F','S'].map((d,i) => (
+          <div key={i} className="text-center text-cream/45 text-[9px] py-1">{d}</div>
+        ))}
+      </div>
+      <div className="grid grid-cols-7 gap-0.5">
+        {Array.from({length: firstDay}).map((_,i) => <div key={i} />)}
+        {Array.from({length: daysInMonth}, (_,i) => i+1).map(day => {
+          const status = bookedMap[day]
+          const isSel = selDay === day
+          const isPast = new Date(year, month, day) < new Date(new Date().setHours(0,0,0,0))
+          return (
+            <button key={day} disabled={isPast} onClick={() => setSelDay(isSel ? null : day)}
+              className={`aspect-square flex flex-col items-center justify-center rounded-md text-[10px] transition-all duration-150
+                ${isPast ? 'opacity-20 cursor-not-allowed' 
+                : isSel ? 'bg-gold-500/20 border border-gold-500/40 text-gold-400 scale-105'
+                : status ? 'hover:bg-white/05 text-cream/90' : 'hover:bg-white/05 text-cream/60'}`}>
+              <span>{day}</span>
+              {status && <div className="w-1 h-1 rounded-full mt-0.5" style={{background: dotColor[status]}} />}
+            </button>
+          )
+        })}
+      </div>
+
+      {selDay && (
+        <div className="mt-3 p-2.5 rounded-xl glass-light border border-white/05 flex items-center gap-2">
+          <div className="w-2 h-2 rounded-full shrink-0" style={{background: bookedMap[selDay] ? dotColor[bookedMap[selDay]] : '#34d399'}} />
+          <span className="text-cream/90 text-[10px] font-sans leading-tight">
+            {monthNames[month]} {selDay} — {bookedMap[selDay] ? label[bookedMap[selDay]] : <span className="text-emerald-400 font-semibold">Available!</span>}
+          </span>
+        </div>
+      )}
+    </div>
+  )
+}
+
+
+
 /* ─── Scroll Progress Bar ────────────────────────────────────────────── */
 function ScrollProgressBar() {
   const [progress, setProgress] = useState(0)
@@ -50,7 +124,7 @@ export default function VenueDetail() {
           <Info size={32} className="text-gold-400/40" />
         </div>
         <h2 className="font-display text-4xl text-cream mb-4">Venue not found</h2>
-        <Link to="/venues" className="btn-gold px-8 py-3 rounded-full text-xs">Back to Portfoilo</Link>
+        <Link to="/venues" className="btn-gold px-8 py-3 rounded-full text-sm">Back to Portfoilo</Link>
       </div>
     </div>
   )
@@ -73,8 +147,8 @@ export default function VenueDetail() {
 
         {/* Content Overlay */}
         <div className="absolute bottom-0 left-0 right-0 z-10 py-20">
-          <div className="max-w-7xl mx-auto px-6">
-            <Link to="/venues" className="inline-flex items-center gap-2 text-gold-400/60 hover:text-gold-400 transition-all text-xs tracking-widest uppercase mb-8" data-reveal="fade">
+          <div className="section-container">
+            <Link to="/venues" className="inline-flex items-center gap-2 text-gold-400/60 hover:text-gold-400 transition-all text-sm tracking-widest uppercase mb-8" data-reveal="fade">
               <ChevronLeft size={16} /> Portfolio
             </Link>
             
@@ -86,24 +160,24 @@ export default function VenueDetail() {
                   </span>
                   <div className="flex items-center gap-1.5 glass rounded-full px-3 py-1 border border-white/05">
                     <Star size={12} className="text-gold-400 fill-gold-400" />
-                    <span className="text-cream/80 text-[11px] font-bold">{venue.rating}</span>
-                    <span className="text-cream/30 text-[10px]">({venue.reviews} Reviews)</span>
+                    <span className="text-cream/90 text-[11px] font-bold">{venue.rating}</span>
+                    <span className="text-cream/60 text-[10px]">({venue.reviews} Reviews)</span>
                   </div>
                 </div>
                 <h1 className="font-display text-5xl md:text-7xl text-cream leading-tight mb-4">
                   {venue.name}
                 </h1>
-                <div className="flex items-center gap-2 text-gold-500/60 text-sm">
+                <div className="flex items-center gap-2 text-gold-500/60 text-base">
                   <MapPin size={16} />
                   <span className="tracking-wide">{venue.location}</span>
                 </div>
               </div>
 
               <div className="flex items-center gap-3" data-reveal="fade" data-delay="2">
-                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/40 hover:text-gold-400 transition-all border border-white/05">
+                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/70 hover:text-gold-400 transition-all border border-white/05">
                   <Heart size={20} />
                 </button>
-                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/40 hover:text-gold-400 transition-all border border-white/05">
+                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/70 hover:text-gold-400 transition-all border border-white/05">
                   <Share2 size={20} />
                 </button>
               </div>
@@ -112,7 +186,7 @@ export default function VenueDetail() {
         </div>
       </div>
 
-      <div className="max-w-7xl mx-auto px-6 -mt-10 relative z-20">
+      <div className="section-container -mt-10 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
           
           {/* Left Column: Details & Gallery */}
@@ -139,9 +213,9 @@ export default function VenueDetail() {
             <div data-reveal="up">
               <div className="flex items-center gap-3 mb-6">
                 <div className="h-px w-8 bg-gold-400" />
-                <h2 className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium">The Experience</h2>
+                <h2 className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">The Experience</h2>
               </div>
-              <p className="text-cream/60 text-xl leading-relaxed italic font-display">
+              <p className="text-cream/90 text-xl leading-relaxed italic font-display">
                 "{venue.description}"
               </p>
             </div>
@@ -158,7 +232,7 @@ export default function VenueDetail() {
                     <item.icon size={24} className="text-gold-400" />
                   </div>
                   <div className="font-display text-4xl text-cream mb-1">{item.value}</div>
-                  <div className="text-cream/20 text-[10px] tracking-[0.2em] uppercase mb-4">{item.label}</div>
+                  <div className="text-cream/50 text-[10px] tracking-[0.2em] uppercase mb-4">{item.label}</div>
                   <div className="section-line mb-4 opacity-20" />
                   <div className="text-gold-500/40 text-[9px] tracking-widest uppercase">{item.sub}</div>
                 </div>
@@ -169,7 +243,7 @@ export default function VenueDetail() {
             <div data-reveal="up">
               <div className="flex items-center gap-3 mb-10">
                 <div className="h-px w-8 bg-gold-400" />
-                <h2 className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium">Curated Amenities</h2>
+                <h2 className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">Curated Amenities</h2>
               </div>
               <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
                 {venue.amenities.map((a, i) => (
@@ -177,7 +251,7 @@ export default function VenueDetail() {
                     <div className="w-8 h-8 rounded-full bg-gold-500/10 flex items-center justify-center shrink-0">
                       <CheckCircle size={14} className="text-gold-400" />
                     </div>
-                    <span className="text-cream/70 text-sm font-medium">{a}</span>
+                    <span className="text-cream/90 text-base font-medium">{a}</span>
                   </div>
                 ))}
               </div>
@@ -196,7 +270,7 @@ export default function VenueDetail() {
                     <span className="text-gold-400/50 text-[10px] tracking-widest uppercase mb-1">Elite Booking Rate</span>
                     <div className="flex items-baseline gap-2">
                       <span className="animated-gradient-text font-display text-5xl font-bold">₹{(venue.price / 1000).toFixed(0)}K</span>
-                      <span className="text-cream/40 text-sm">{venue.priceUnit}</span>
+                      <span className="text-cream/70 text-base">{venue.priceUnit}</span>
                     </div>
                   </div>
                   <div className="w-12 h-12 bg-gold-gradient rounded-2xl flex items-center justify-center rotate-3 shadow-lg shadow-gold-500/20">
@@ -211,7 +285,7 @@ export default function VenueDetail() {
                     <label className="text-gold-500/70 text-[10px] tracking-[0.3em] uppercase mb-2.5 block px-1">Engagement Date</label>
                     <div className="relative">
                       <Calendar size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold-500/40" />
-                      <input type="date" className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                      <input type="date" className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                     </div>
                   </div>
                   
@@ -219,22 +293,31 @@ export default function VenueDetail() {
                     <label className="text-gold-500/70 text-[10px] tracking-[0.3em] uppercase mb-2.5 block px-1">Presence Size</label>
                     <div className="relative">
                       <Users size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold-500/40" />
-                      <input type="number" placeholder={`Select up to ${venue.capacity}`} className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                      <input type="number" placeholder={`Select up to ${venue.capacity}`} className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                     </div>
                   </div>
                 </div>
 
-                <Link to={`/book?venue=${venue.id}`} className="btn-gold w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-sm font-bold shadow-xl shadow-gold-500/10 transform transition-transform hover:scale-[1.02] active:scale-[0.98]">
+                <Link to={`/book?venue=${venue.id}`} className="btn-gold w-full py-5 rounded-2xl flex items-center justify-center gap-3 text-base font-bold shadow-xl shadow-gold-500/10 transform transition-transform hover:scale-[1.02] active:scale-[0.98]">
                   Initiate Booking <ArrowRight size={18} />
                 </Link>
 
-                <div className="mt-8 pt-8 border-t border-gold-500/10 space-y-4">
+                {/* Live Availability Calendar */}
+                <div className="mt-8 pt-8 border-t border-gold-500/10">
+                  <div className="flex items-center gap-2 mb-4">
+                    <Calendar size={13} className="text-gold-400/60" />
+                    <span className="text-gold-400/60 text-[10px] tracking-[0.3em] uppercase font-sans">Live Availability</span>
+                  </div>
+                  <VenueAvailabilityWidget venueId={venue.id} venueName={venue.name} />
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-gold-500/10 space-y-4">
                   {[
                     { text: 'Best Price Guaranteed', icon: Shield },
                     { text: 'Concierge Event Manager', icon: ArrowUpRight },
                     { text: 'Priority Processing', icon: Clock }
                   ].map((feat, idx) => (
-                    <div key={idx} className="flex items-center gap-3 text-cream/40 text-xs">
+                    <div key={idx} className="flex items-center gap-3 text-cream/70 text-sm">
                       <feat.icon size={14} className="text-gold-400/50" />
                       <span className="tracking-wide">{feat.text}</span>
                     </div>
@@ -248,16 +331,16 @@ export default function VenueDetail() {
       </div>
 
       {/* Suggested Curations */}
-      <div className="max-w-7xl mx-auto px-6 py-32" data-reveal="up">
+      <div className="section-container py-32" data-reveal="up">
         <div className="flex items-center justify-between mb-12">
           <div>
             <div className="flex items-center gap-3 mb-2">
               <div className="h-px w-8 bg-gold-400" />
-              <h2 className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium">The Collection</h2>
+              <h2 className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">The Collection</h2>
             </div>
             <h3 className="font-display text-4xl text-cream">Similar Statement Venues</h3>
           </div>
-          <Link to="/venues" className="btn-outline px-8 py-3 rounded-full text-xs hidden md:flex">
+          <Link to="/venues" className="btn-outline px-8 py-3 rounded-full text-sm hidden md:flex">
             View All Venues
           </Link>
         </div>
@@ -269,14 +352,14 @@ export default function VenueDetail() {
                 <img src={v.image} alt={v.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent opacity-60" />
                 <div className="absolute top-4 right-4 glass rounded-full px-3 py-1 border border-white/10">
-                  <span className="text-gold-400 font-bold text-xs">₹{(v.price/1000).toFixed(0)}K</span>
+                  <span className="text-gold-400 font-bold text-sm">₹{(v.price/1000).toFixed(0)}K</span>
                 </div>
               </div>
               <div className="p-6">
                 <div className="text-gold-500/50 text-[10px] tracking-[0.2em] uppercase mb-2 font-sans">{v.type}</div>
                 <div className="font-display text-2xl text-cream group-hover:text-gold-400 transition-colors">{v.name}</div>
                 <div className="mt-4 flex items-center justify-between">
-                  <div className="flex items-center gap-2 text-cream/30 text-xs">
+                  <div className="flex items-center gap-2 text-cream/60 text-sm">
                     <Users size={12} /> {v.capacity.toLocaleString()}
                   </div>
                   <div className="text-gold-400 opacity-0 group-hover:opacity-100 transition-all translate-x-4 group-hover:translate-x-0">

@@ -28,7 +28,7 @@ export default function Navbar() {
         scrolled ? 'glass py-3 shadow-[0_4px_40px_rgba(0,0,0,0.5)]' : 'bg-transparent py-5'
       }`}
     >
-      <div className="max-w-7xl mx-auto px-6 flex items-center justify-between">
+      <div className="section-container flex items-center justify-between">
         {/* Logo */}
         <Link to="/" className="flex items-center gap-3 group shrink-0">
           <div className="relative">
@@ -52,7 +52,7 @@ export default function Navbar() {
               key={link.to}
               to={link.to}
               className={`text-base font-sans font-medium tracking-wide transition-all duration-200 relative group flex items-center gap-1.5 ${
-                location.pathname === link.to ? 'text-gold-400' : 'text-cream/60 hover:text-cream'
+                location.pathname === link.to ? 'text-gold-400' : 'text-cream/90 hover:text-cream'
               }`}
             >
               {link.icon && <link.icon size={11} className="opacity-70" />}
@@ -90,8 +90,8 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 onClick={() => setOpen(false)}
-                className={`text-sm font-sans py-1 flex items-center gap-2 ${
-                  location.pathname === link.to ? 'text-gold-400' : 'text-cream/60'
+                className={`text-base font-sans py-1 flex items-center gap-2 ${
+                  location.pathname === link.to ? 'text-gold-400' : 'text-cream/90'
                 }`}
               >
                 {link.icon && <link.icon size={13} />}
@@ -101,7 +101,7 @@ export default function Navbar() {
             <Link
               to="/book"
               onClick={() => setOpen(false)}
-              className="btn-gold px-5 py-3 rounded-lg text-xs text-center mt-2"
+              className="btn-gold px-5 py-3 rounded-lg text-sm text-center mt-2"
             >
               Request Booking
             </Link>

@@ -183,26 +183,26 @@ export default function BookingForm() {
               <CheckCircle size={48} className="text-gold-400" />
             </div>
             <div className="gold-shimmer font-display text-4xl md:text-5xl font-bold mb-4 tracking-tight">Booking Initiated</div>
-            <p className="text-cream/60 text-lg max-w-lg mx-auto mb-12">
+            <p className="text-cream/90 text-lg max-w-lg mx-auto mb-12">
               Your request for <span className="text-cream font-semibold">{selectedVenue?.name}</span> has been securely submitted.
             </p>
             <div className="glass-light rounded-3xl p-8 mb-10 text-left border border-white/05">
               <div className="grid grid-cols-2 gap-y-6">
                 <div>
-                  <div className="text-gold-400/60 text-xs tracking-widest uppercase mb-1">Booking ID</div>
+                  <div className="text-gold-400/60 text-sm tracking-widest uppercase mb-1">Booking ID</div>
                   <div className="text-gold-400 font-mono text-lg font-bold">{bookingId}</div>
                 </div>
                 <div>
-                  <div className="text-gold-400/60 text-xs tracking-widest uppercase mb-1">Event Date</div>
+                  <div className="text-gold-400/60 text-sm tracking-widest uppercase mb-1">Event Date</div>
                   <div className="text-cream font-semibold">{form.eventDate}</div>
                 </div>
                 <div>
-                  <div className="text-gold-400/60 text-xs tracking-widest uppercase mb-1">Hall</div>
+                  <div className="text-gold-400/60 text-sm tracking-widest uppercase mb-1">Hall</div>
                   <div className="text-cream font-semibold">{form.hallSelection}</div>
                 </div>
                 <div className="col-span-2">
-                  <div className="text-gold-400/60 text-xs tracking-widest uppercase mb-1">Status</div>
-                  <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-xs font-bold border uppercase tracking-widest ${
+                  <div className="text-gold-400/60 text-sm tracking-widest uppercase mb-1">Status</div>
+                  <div className={`inline-flex items-center gap-2 px-4 py-1.5 rounded-full text-sm font-bold border uppercase tracking-widest ${
                     submitStatus === 'confirmed'
                       ? 'bg-emerald-500/10 text-emerald-400 border-emerald-500/20'
                       : 'bg-amber-500/10 text-amber-400 border-amber-500/20'
@@ -213,10 +213,10 @@ export default function BookingForm() {
               </div>
             </div>
             <div className="flex flex-col sm:flex-row gap-4">
-              <Link to="/my-bookings" className="btn-gold flex-1 py-4 rounded-2xl text-sm font-bold">
+              <Link to="/my-bookings" className="btn-gold flex-1 py-4 rounded-2xl text-base font-bold">
                 View My Bookings
               </Link>
-              <Link to="/venues" className="btn-outline flex-1 py-4 rounded-2xl text-sm font-bold">
+              <Link to="/venues" className="btn-outline flex-1 py-4 rounded-2xl text-base font-bold">
                 Explore More Venues
               </Link>
             </div>
@@ -231,19 +231,19 @@ export default function BookingForm() {
       <ScrollProgressBar />
 
       {/* Header */}
-      <div className="max-w-5xl mx-auto px-6 mb-16 text-center" data-reveal="fade">
+      <div className="section-container mb-16 text-center" data-reveal="fade">
         <div className="flex items-center justify-center gap-3 mb-6">
           <div className="h-px w-10 bg-gold-500/50" />
-          <span className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium">Smart Booking Engine</span>
+          <span className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">Smart Booking Engine</span>
           <div className="h-px w-10 bg-gold-500/50" />
         </div>
         <h1 className="font-display text-5xl md:text-6xl text-cream mb-6 leading-tight">
           Initiate Your <em className="animated-gradient-text not-italic">Booking Request</em>
         </h1>
-        <p className="text-cream/50 text-lg max-w-2xl mx-auto">Complete the form below to request a private booking of our premier facilities.</p>
+        <p className="text-cream/80 text-lg max-w-2xl mx-auto">Complete the form below to request a private booking of our premier facilities.</p>
       </div>
 
-      <div className="max-w-6xl mx-auto px-6">
+      <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
 
           {/* Left: Stepper Navigation */}
@@ -260,11 +260,11 @@ export default function BookingForm() {
                     active ? 'bg-gold-500/10 border-gold-400' :
                     'bg-white/05 border-white/10'
                   }`}>
-                    {done ? <CheckCircle size={18} className="text-navy-950" /> : <s.icon size={18} className={active ? 'text-gold-400' : 'text-cream/50'} />}
+                    {done ? <CheckCircle size={18} className="text-navy-950" /> : <s.icon size={18} className={active ? 'text-gold-400' : 'text-cream/80'} />}
                   </div>
                   <div>
-                    <div className={`text-xs tracking-widest uppercase ${active ? 'text-gold-400' : 'text-cream/40'}`}>{s.label}</div>
-                    <div className={`text-xs font-semibold ${active ? 'text-cream' : 'text-cream/20'}`}>{s.desc}</div>
+                    <div className={`text-sm tracking-widest uppercase ${active ? 'text-gold-400' : 'text-cream/70'}`}>{s.label}</div>
+                    <div className={`text-sm font-semibold ${active ? 'text-cream' : 'text-cream/50'}`}>{s.desc}</div>
                   </div>
                 </div>
               )
@@ -306,13 +306,13 @@ export default function BookingForm() {
                             )}
                             <div className="absolute bottom-4 left-5">
                               <div className="text-cream text-base font-display mb-0.5">{v.name}</div>
-                              <div className="text-gold-400/80 text-xs tracking-widest uppercase">{v.type}</div>
+                              <div className="text-gold-400/80 text-sm tracking-widest uppercase">{v.type}</div>
                             </div>
                           </div>
                           <div className="p-4 flex items-center justify-between bg-navy-950/40">
                             <div className="flex items-center gap-3">
-                              <div className="text-gold-400/60 text-xs tracking-widest uppercase">Capacity</div>
-                              <div className="text-cream/80 text-sm font-bold">{v.capacity.toLocaleString()}</div>
+                              <div className="text-gold-400/60 text-sm tracking-widest uppercase">Capacity</div>
+                              <div className="text-cream/90 text-base font-bold">{v.capacity.toLocaleString()}</div>
                             </div>
                             <div className="text-gold-400 font-display font-bold text-base">₹{(v.price/1000).toFixed(0)}K</div>
                           </div>
@@ -323,7 +323,7 @@ export default function BookingForm() {
                     {/* Hall selection — only shows when a venue is selected */}
                     {selectedVenue && (
                       <div className="space-y-3">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
                           <Layers size={13} /> Hall Selection *
                         </label>
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
@@ -342,7 +342,7 @@ export default function BookingForm() {
                               }`}>
                                 {form.hallSelection === hall && <CheckCircle size={12} className="text-navy-950" />}
                               </div>
-                              <span className={`text-sm font-medium ${form.hallSelection === hall ? 'text-gold-400' : 'text-cream/70'}`}>
+                              <span className={`text-base font-medium ${form.hallSelection === hall ? 'text-gold-400' : 'text-cream/90'}`}>
                                 {hall}
                               </span>
                             </button>
@@ -365,9 +365,9 @@ export default function BookingForm() {
                     <div className="glass-light rounded-3xl p-5 mb-8 flex items-center gap-5 border border-white/05">
                       <img src={selectedVenue?.image} alt="" className="w-16 h-16 rounded-2xl object-cover shrink-0" />
                       <div>
-                        <div className="text-gold-400/60 text-xs tracking-[0.3em] uppercase mb-1">Selected Venue & Hall</div>
+                        <div className="text-gold-400/60 text-sm tracking-[0.3em] uppercase mb-1">Selected Venue & Hall</div>
                         <div className="font-display text-xl text-cream">{selectedVenue?.name}</div>
-                        <div className="text-gold-400/80 text-xs mt-1 flex items-center gap-1.5">
+                        <div className="text-gold-400/80 text-sm mt-1 flex items-center gap-1.5">
                           <Layers size={11} />{form.hallSelection}
                         </div>
                       </div>
@@ -377,9 +377,9 @@ export default function BookingForm() {
 
                       {/* Event Type */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Event Type *</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Event Type *</label>
                         <select value={form.eventType} onChange={e => set('eventType', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
                           <option value="">Select Event Type</option>
                           {eventTypes.map(t => <option key={t}>{t}</option>)}
                         </select>
@@ -387,44 +387,44 @@ export default function BookingForm() {
 
                       {/* Expected Guests */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Expected Guests *</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Expected Guests *</label>
                         <input type="number" placeholder={`Max ${selectedVenue?.capacity || 2000}`}
                           value={form.expectedGuests} onChange={e => set('expectedGuests', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
 
                       {/* Setup Date */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
                           <Clock size={11} /> Setup Date (Start–End)
                         </label>
                         <input type="date" value={form.setupDate} onChange={e => set('setupDate', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
 
                       {/* Event Date */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
                           <Calendar size={11} /> Event Date *
                         </label>
                         <input type="date" value={form.eventDate} onChange={e => set('eventDate', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
 
                       {/* Dismantle Date */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-1.5">
                           <Clock size={11} /> Dismantle Date
                         </label>
                         <input type="date" value={form.dismantleDate} onChange={e => set('dismantleDate', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
 
                       {/* Time Slot */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Time Slot</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Time Slot</label>
                         <select value={form.timeSlot} onChange={e => set('timeSlot', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
                           <option value="">Select Slot</option>
                           {(selectedVenue?.availableSlots || ['Full Day', 'Evening Only']).map(s => <option key={s}>{s}</option>)}
                         </select>
@@ -432,18 +432,18 @@ export default function BookingForm() {
 
                       {/* Event Status */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Event Status</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Event Status</label>
                         <select value={form.eventStatus} onChange={e => set('eventStatus', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
                           {eventStatuses.map(s => <option key={s}>{s}</option>)}
                         </select>
                       </div>
 
                       {/* Availability */}
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Availability</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Availability</label>
                         <select value={form.availability} onChange={e => set('availability', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
                           <option>Booked</option>
                           <option>Required</option>
                         </select>
@@ -451,10 +451,10 @@ export default function BookingForm() {
 
                       {/* Description */}
                       <div className="md:col-span-2 space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Event Description</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Event Description</label>
                         <textarea rows={3} placeholder="Describe the vision and requirements of your event..."
                           value={form.eventDescription} onChange={e => set('eventDescription', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-3xl text-sm text-cream outline-none focus:border-gold-400 transition-all resize-none" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-3xl text-base text-cream outline-none focus:border-gold-400 transition-all resize-none" />
                       </div>
                     </div>
 
@@ -463,11 +463,11 @@ export default function BookingForm() {
                       <div className="mt-6 flex items-start gap-3 p-4 rounded-2xl border border-red-500/30 bg-red-500/08">
                         <AlertTriangle size={18} className="text-red-400 shrink-0 mt-0.5" />
                         <div>
-                          <div className="text-red-400 text-sm font-bold mb-1">Date Conflict Detected</div>
-                          <div className="text-cream/60 text-xs">
+                          <div className="text-red-400 text-base font-bold mb-1">Date Conflict Detected</div>
+                          <div className="text-cream/90 text-sm">
                             Booking <span className="text-red-300 font-mono font-bold">{conflict.conflictWith}</span> already occupies{' '}
-                            <span className="text-cream/80">{conflict.venue} – {conflict.hall}</span> for dates{' '}
-                            <span className="text-cream/80">{conflict.dates}</span>. Please adjust your dates or choose a different hall.
+                            <span className="text-cream/90">{conflict.venue} – {conflict.hall}</span> for dates{' '}
+                            <span className="text-cream/90">{conflict.dates}</span>. Please adjust your dates or choose a different hall.
                           </div>
                         </div>
                       </div>
@@ -477,7 +477,7 @@ export default function BookingForm() {
                     {form.setupDate && form.eventDate && new Date(form.setupDate) > new Date(form.eventDate) && (
                       <div className="mt-4 flex items-start gap-3 p-4 rounded-2xl border border-amber-500/30 bg-amber-500/08">
                         <AlertCircle size={18} className="text-amber-400 shrink-0 mt-0.5" />
-                        <div className="text-amber-400 text-xs">Setup Date must be ≤ Event Date.</div>
+                        <div className="text-amber-400 text-sm">Setup Date must be ≤ Event Date.</div>
                       </div>
                     )}
                   </div>
@@ -494,11 +494,11 @@ export default function BookingForm() {
                     <div className="space-y-8">
                       {/* Industry */}
                       <div className="space-y-3">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
                           <Building2 size={13} /> Industry *
                         </label>
                         <select value={form.industry} onChange={e => set('industry', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all appearance-none cursor-pointer">
                           <option value="">Select Industry</option>
                           {industries.map(i => <option key={i}>{i}</option>)}
                         </select>
@@ -506,26 +506,26 @@ export default function BookingForm() {
 
                       {/* Sectors - multi select */}
                       <div className="space-y-3">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
                           <Tag size={13} /> Sectors (Multi-select) *
                         </label>
-                        <p className="text-cream/40 text-xs ml-2">Select all relevant sectors for this event</p>
+                        <p className="text-cream/70 text-sm ml-2">Select all relevant sectors for this event</p>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-3">
                           {sectors.map(sector => {
                             const selected = form.sectors.includes(sector)
                             return (
                               <button key={sector} onClick={() => toggleSector(sector)}
-                                className={`p-3 rounded-xl border-2 text-left text-sm transition-all duration-300 flex items-center gap-2 ${
+                                className={`p-3 rounded-xl border-2 text-left text-base transition-all duration-300 flex items-center gap-2 ${
                                   selected
                                     ? 'border-gold-400 bg-gold-500/10 text-gold-400'
-                                    : 'border-white/05 bg-white/05 text-cream/60 hover:border-gold-500/30 hover:text-cream'
+                                    : 'border-white/05 bg-white/05 text-cream/90 hover:border-gold-500/30 hover:text-cream'
                                 }`}>
                                 <div className={`w-5 h-5 rounded-md border-2 shrink-0 flex items-center justify-center ${
                                   selected ? 'border-gold-400 bg-gold-400' : 'border-white/20'
                                 }`}>
                                   {selected && <CheckCircle size={11} className="text-navy-950" />}
                                 </div>
-                                <span className="font-medium text-xs leading-tight">{sector}</span>
+                                <span className="font-medium text-sm leading-tight">{sector}</span>
                               </button>
                             )
                           })}
@@ -533,7 +533,7 @@ export default function BookingForm() {
                         {form.sectors.length > 0 && (
                           <div className="flex flex-wrap gap-2 mt-3">
                             {form.sectors.map(s => (
-                              <span key={s} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs font-medium">
+                              <span key={s} className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm font-medium">
                                 {s}
                                 <button onClick={() => toggleSector(s)} className="hover:text-red-400 transition-colors">
                                   <X size={10} />
@@ -557,34 +557,34 @@ export default function BookingForm() {
 
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-7">
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Full Name *</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Full Name *</label>
                         <input type="text" placeholder="Principal Organizer" value={form.organizerName}
                           onChange={e => set('organizerName', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Company / Organization</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Company / Organization</label>
                         <input type="text" placeholder="Establishment Name" value={form.company}
                           onChange={e => set('company', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Email Address *</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Email Address *</label>
                         <input type="email" placeholder="official@domain.com" value={form.email}
                           onChange={e => set('email', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
                       <div className="space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Phone Number *</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Phone Number *</label>
                         <input type="tel" placeholder="+91 XXXXX XXXXX" value={form.phone}
                           onChange={e => set('phone', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                       </div>
                       <div className="md:col-span-2 space-y-2">
-                        <label className="text-gold-400/70 text-xs tracking-[0.3em] uppercase ml-2">Special Requirements</label>
+                        <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2">Special Requirements</label>
                         <textarea rows={3} placeholder="Security, technical, or catering requirements..."
                           value={form.specialRequirements} onChange={e => set('specialRequirements', e.target.value)}
-                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-3xl text-sm text-cream outline-none focus:border-gold-400 transition-all resize-none" />
+                          className="w-full px-5 py-4 bg-navy-950/50 border border-gold-500/15 rounded-3xl text-base text-cream outline-none focus:border-gold-400 transition-all resize-none" />
                       </div>
                     </div>
                   </div>
@@ -607,7 +607,7 @@ export default function BookingForm() {
                           </div>
                           <div className="flex-1 space-y-5">
                             <div>
-                              <div className="text-gold-400/60 text-xs tracking-[0.3em] uppercase mb-1">Venue</div>
+                              <div className="text-gold-400/60 text-sm tracking-[0.3em] uppercase mb-1">Venue</div>
                               <div className="font-display text-3xl text-cream">{selectedVenue?.name}</div>
                             </div>
                             <div className="grid grid-cols-2 gap-x-8 gap-y-4">
@@ -622,15 +622,15 @@ export default function BookingForm() {
                                 { k: 'Organizer', v: form.organizerName },
                               ].map((item, idx) => (
                                 <div key={idx}>
-                                  <div className="text-cream/40 text-xs tracking-widest uppercase mb-1">{item.k}</div>
-                                  <div className="text-cream text-sm font-semibold">{item.v}</div>
+                                  <div className="text-cream/70 text-sm tracking-widest uppercase mb-1">{item.k}</div>
+                                  <div className="text-cream text-base font-semibold">{item.v}</div>
                                 </div>
                               ))}
                               <div className="col-span-2">
-                                <div className="text-cream/40 text-xs tracking-widest uppercase mb-2">Sectors</div>
+                                <div className="text-cream/70 text-sm tracking-widest uppercase mb-2">Sectors</div>
                                 <div className="flex flex-wrap gap-2">
                                   {form.sectors.map(s => (
-                                    <span key={s} className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-xs">
+                                    <span key={s} className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-sm">
                                       {s}
                                     </span>
                                   ))}
@@ -644,21 +644,21 @@ export default function BookingForm() {
                       {/* Price + Status */}
                       <div className="grid grid-cols-1 md:grid-cols-2 gap-5">
                         <div className="glass-light rounded-2xl p-6 border border-white/05 flex items-center justify-between">
-                          <div className="text-gold-400/70 text-sm tracking-widest uppercase">Estimated Value</div>
+                          <div className="text-gold-400/70 text-base tracking-widest uppercase">Estimated Value</div>
                           <div className="animated-gradient-text text-2xl font-display font-bold">
                             ₹{selectedVenue ? (selectedVenue.price / 1000).toFixed(0) + 'K' : '—'}
                           </div>
                         </div>
                         <div className="glass-light rounded-2xl p-6 border border-white/05 flex items-center justify-between">
-                          <div className="text-gold-400/70 text-sm tracking-widest uppercase">Current Status</div>
-                          <div className="text-amber-400 text-sm font-bold">{form.eventStatus}</div>
+                          <div className="text-gold-400/70 text-base tracking-widest uppercase">Current Status</div>
+                          <div className="text-amber-400 text-base font-bold">{form.eventStatus}</div>
                         </div>
                       </div>
 
                       {/* Terms */}
                       <div className="flex items-start gap-4 p-5 glass-light rounded-2xl border border-white/05">
                         <Shield size={18} className="text-gold-500 mt-0.5 shrink-0" />
-                        <p className="text-cream/50 text-sm leading-relaxed">
+                        <p className="text-cream/80 text-base leading-relaxed">
                           By submitting, you acknowledge that the booking is subject to verified availability. Tentative bookings are held for 48 hours pending formal confirmation.
                         </p>
                       </div>
@@ -671,7 +671,7 @@ export default function BookingForm() {
               <div className="flex justify-between items-center mt-12 pt-8 border-t border-gold-500/10">
                 {step > 1 ? (
                   <button onClick={() => setStep(s => s - 1)}
-                    className="flex items-center gap-2 text-cream/40 hover:text-gold-400 transition-all text-sm font-medium tracking-widest uppercase group">
+                    className="flex items-center gap-2 text-cream/70 hover:text-gold-400 transition-all text-base font-medium tracking-widest uppercase group">
                     <ChevronLeft size={16} className="group-hover:-translate-x-1 transition-transform" /> Back
                   </button>
                 ) : <div />}
@@ -681,19 +681,19 @@ export default function BookingForm() {
                     <button
                       onClick={() => setStep(s => s + 1)}
                       disabled={!canNext()}
-                      className={`btn-gold px-10 py-4 rounded-full text-xs font-bold flex items-center gap-3 tracking-[0.2em] shadow-lg shadow-gold-500/10 ${!canNext() ? 'opacity-30 cursor-not-allowed' : 'hover:scale-105 active:scale-95 transition-transform'}`}>
+                      className={`btn-gold px-10 py-4 rounded-full text-sm font-bold flex items-center gap-3 tracking-[0.2em] shadow-lg shadow-gold-500/10 ${!canNext() ? 'opacity-30 cursor-not-allowed' : 'hover:scale-105 active:scale-95 transition-transform'}`}>
                       PROCEED <ChevronRight size={16} />
                     </button>
                   ) : (
                     <div className="flex gap-3">
                       <button
                         onClick={() => handleSubmit('tentative')}
-                        className="btn-outline px-8 py-4 rounded-full text-xs font-bold flex items-center gap-3 tracking-[0.2em] hover:scale-105 active:scale-95 transition-transform">
+                        className="btn-outline px-8 py-4 rounded-full text-sm font-bold flex items-center gap-3 tracking-[0.2em] hover:scale-105 active:scale-95 transition-transform">
                         <AlertCircle size={16} /> SAVE TENTATIVE
                       </button>
                       <button
                         onClick={() => handleSubmit('confirmed')}
-                        className="btn-gold px-10 py-4 rounded-full text-xs font-bold flex items-center gap-3 tracking-[0.2em] shadow-2xl shadow-gold-500/20 hover:scale-105 active:scale-95 transition-transform">
+                        className="btn-gold px-10 py-4 rounded-full text-sm font-bold flex items-center gap-3 tracking-[0.2em] shadow-2xl shadow-gold-500/20 hover:scale-105 active:scale-95 transition-transform">
                         CONFIRM BOOKING <Award size={16} />
                       </button>
                     </div>

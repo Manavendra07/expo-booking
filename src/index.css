@@ -58,6 +58,14 @@ body {
   transition: box-shadow 0.3s ease;
 }
 
+/* ── Centralised section width (92%) ─────────────────────────────────── */
+.section-container {
+  width: 92%;
+  max-width: 1800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 /* Gradient orbs */
 .orb {
   position: absolute;
@@ -83,7 +91,7 @@ body {
   font-weight: 600;
   letter-spacing: 0.08em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
 }
 .btn-gold:hover {
@@ -99,7 +107,7 @@ body {
   font-weight: 500;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  font-size: 0.75rem;
+  font-size: 0.875rem;
   transition: all 0.3s ease;
 }
 .btn-outline:hover {
@@ -479,3 +487,18 @@ select option { background: #0e1628; color: #f5ede0; }
   animation: gradientShift 5s ease infinite;
 }
 
+/* ═══════════════════════════════════════ */
+/* STACKING SCROLL ANIMATION               */
+/* ═══════════════════════════════════════ */
+.stacking-card-content {
+  animation: stackScale linear forwards;
+  animation-timeline: view();
+  animation-range: 25vh 80vh; /* Precisely mapped to your range */
+}
+
+@keyframes stackScale {
+  to {
+    /* Scaling removed to ensure absolute width consistency across viewports.
+       The stacking stickiness continues to be handled by the parent sticky container. */
+  }
+}

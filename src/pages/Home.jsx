@@ -95,11 +95,11 @@ function CountUp({ value, suffix = '', prefix = '' }) {
 /* ═══════════════════════════════════════════════════════════════════════ */
 function HeroSection() {
   const heroImages = [
-    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=90',
+    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=90',
     'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1920&q=90',
     'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1920&q=90',
-    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=90',
     'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=90',
+    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=90',
   ]
   const kenClasses = ['ken-burns', 'ken-burns-2', 'ken-burns', 'ken-burns-2', 'ken-burns']
   const [heroIdx, setHeroIdx] = useState(0)
@@ -149,7 +149,7 @@ function HeroSection() {
       </div>
 
       {/* Content */}
-      <div className="relative max-w-7xl mx-auto px-6 pt-28 pb-20 w-full z-[3]">
+      <div className="relative section-container pt-28 pb-20 w-full z-[3]">
         <div className="max-w-3xl">
           {/* Label */}
           <div className="flex items-center gap-3 mb-7 animate-slide-up">
@@ -166,11 +166,11 @@ function HeroSection() {
           >
             Where Grand<br />
             <em className="gold-shimmer not-italic">Events</em>{' '}
-            <span className="text-cream/80">Begin</span>
+            <span className="text-cream/90">Begin</span>
           </h1>
 
           <p
-            className="text-cream/55 text-xl md:text-2xl leading-relaxed mb-10 max-w-lg font-sans font-light animate-slide-up"
+            className="text-cream/85 text-xl md:text-2xl leading-relaxed mb-10 max-w-lg font-sans font-light animate-slide-up"
             style={{ animationDelay: '0.3s' }}
           >
             Discover, book, and host your event at India's finest venues — in minutes.
@@ -184,23 +184,23 @@ function HeroSection() {
             <p className="text-gold-400/60 text-[10px] tracking-[0.3em] uppercase font-sans mb-4">Find Your Perfect Venue</p>
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div className="col-span-3 sm:col-span-1">
-                <label className="text-cream/30 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Date</label>
+                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Date</label>
                 <input type="date" value={search.date} onChange={(e) => setSearch((p) => ({ ...p, date: e.target.value }))}
-                  className="w-full px-3 py-2.5 text-sm rounded-lg" />
+                  className="w-full px-3 py-2.5 text-base rounded-lg" />
               </div>
               <div>
-                <label className="text-cream/30 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Type</label>
+                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Type</label>
                 <select value={search.type} onChange={(e) => setSearch((p) => ({ ...p, type: e.target.value }))}
-                  className="w-full px-3 py-2.5 text-sm rounded-lg appearance-none">
+                  className="w-full px-3 py-2.5 text-base rounded-lg appearance-none">
                   <option value="">All Types</option>
                   {['Conference', 'Exhibition', 'Wedding', 'Corporate', 'Gala'].map((o) => <option key={o}>{o}</option>)}
                 </select>
               </div>
               <div>
-                <label className="text-cream/30 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Guests</label>
+                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Guests</label>
                 <input type="number" placeholder="No. of guests" value={search.guests}
                   onChange={(e) => setSearch((p) => ({ ...p, guests: e.target.value }))}
-                  className="w-full px-3 py-2.5 text-sm rounded-lg" />
+                  className="w-full px-3 py-2.5 text-base rounded-lg" />
               </div>
             </div>
             <Link to={`/venues?date=${search.date}&type=${search.type}&guests=${search.guests}`}
@@ -211,10 +211,10 @@ function HeroSection() {
 
           {/* Quick links */}
           <div className="flex items-center gap-5 animate-slide-up" style={{ animationDelay: '0.6s' }}>
-            <Link to="/venues" className="btn-outline px-7 py-3 rounded-xl flex items-center gap-2 text-xs">
+            <Link to="/venues" className="btn-outline px-7 py-3 rounded-xl flex items-center gap-2 text-sm">
               Browse Venues <ArrowRight size={13} />
             </Link>
-            <div className="flex items-center gap-2.5 text-cream/35 text-xs font-sans">
+            <div className="flex items-center gap-2.5 text-cream/65 text-sm font-sans">
               <div className="flex -space-x-2">
                 {['photo-1507003211169-0a1dd7228f2d', 'photo-1494790108377-be9c29b29330', 'photo-1560250097-0b93528c311a'].map((id, i) => (
                   <img key={i} src={`https://images.unsplash.com/${id}?w=60&q=70`}
@@ -243,10 +243,10 @@ function HeroSection() {
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
                   <span className="text-emerald-400 text-[10px] font-sans">{card.status}</span>
                 </div>
-                <div className="text-cream text-sm font-sans font-semibold">{card.name}</div>
+                <div className="text-cream text-base font-sans font-semibold">{card.name}</div>
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-cream/40 text-[10px]"><Users size={9} className="inline mr-0.5" />{card.guests}</span>
-                  <span className="text-gold-400 text-xs font-display">{card.price}</span>
+                  <span className="text-cream/70 text-[10px]"><Users size={9} className="inline mr-0.5" />{card.guests}</span>
+                  <span className="text-gold-400 text-sm font-display">{card.price}</span>
                 </div>
               </div>
             </div>
@@ -260,7 +260,7 @@ function HeroSection() {
               </div>
               <div>
                 <div className="text-cream font-sans font-bold text-base leading-none">Real-Time</div>
-                <div className="text-cream/35 text-[10px] font-sans mt-0.5">Availability Checked Live</div>
+                <div className="text-cream/65 text-[10px] font-sans mt-0.5">Availability Checked Live</div>
               </div>
             </div>
           </div>
@@ -269,7 +269,7 @@ function HeroSection() {
 
       {/* Scroll indicator */}
       <div className="absolute bottom-7 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-[3] animate-bounce-slow">
-        <span className="text-cream/20 text-[9px] tracking-[0.45em] uppercase font-sans">Explore</span>
+        <span className="text-cream/50 text-[9px] tracking-[0.45em] uppercase font-sans">Explore</span>
         <div className="w-px h-10 bg-gradient-to-b from-gold-400/60 to-transparent" />
         <ChevronDown size={13} className="text-gold-400/40" />
       </div>
@@ -278,7 +278,7 @@ function HeroSection() {
       <div className="absolute bottom-7 right-8 flex items-center gap-2 z-[3]">
         <span className="text-gold-400 font-display text-xl">{String(heroIdx + 1).padStart(2, '0')}</span>
         <div className="h-px w-8 bg-gold-400/25" />
-        <span className="text-cream/20 font-display text-sm">{String(heroImages.length).padStart(2, '0')}</span>
+        <span className="text-cream/50 font-display text-base">{String(heroImages.length).padStart(2, '0')}</span>
       </div>
     </section>
   )
@@ -300,12 +300,12 @@ function StatsBar() {
       <div className="absolute inset-0 opacity-[0.025]"
         style={{ backgroundImage: 'radial-gradient(circle, #c9a84c 1px, transparent 1px)', backgroundSize: '44px 44px' }} />
 
-      <div className="max-w-7xl mx-auto px-6 relative">
+      <div className="section-container relative">
         <div className="grid grid-cols-2 md:grid-cols-4 divide-x-0 md:divide-x divide-gold-500/10">
           {stats.map((s, i) => (
             <div key={i} className="flex flex-col items-center py-4 px-8" data-reveal data-delay={String(i + 1)}>
               <CountUp value={s.value} suffix={s.suffix} />
-              <p className="text-cream/55 text-sm font-sans tracking-wider text-center mt-2 font-medium">{s.label}</p>
+              <p className="text-cream/85 text-base font-sans tracking-wider text-center mt-2 font-medium">{s.label}</p>
               <p className="text-gold-500/40 text-[10px] font-sans tracking-[0.2em] uppercase text-center mt-1">{s.sub}</p>
             </div>
           ))}
@@ -344,7 +344,7 @@ function TrustedBySection() {
               className="flex items-center gap-3 px-8 shrink-0"
             >
               <div className="w-1.5 h-1.5 rounded-full bg-gold-500/30 shrink-0" />
-              <span className="text-cream/25 text-sm font-sans font-medium tracking-wide whitespace-nowrap hover:text-cream/55 transition-colors cursor-default">
+              <span className="text-cream/55 text-base font-sans font-medium tracking-wide whitespace-nowrap hover:text-cream/85 transition-colors cursor-default">
                 {brand}
               </span>
             </div>
@@ -391,13 +391,13 @@ const steps = [
 
 function HowToBookSection() {
   return (
-    <section className="py-24 relative overflow-hidden">
+    <section className="py-14 relative overflow-hidden">
       <div className="orb w-[600px] h-[600px] bg-teal-800/10 -left-48 top-48" />
       <div className="orb w-[400px] h-[400px] bg-gold-500/05 right-0 bottom-0" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="section-container">
         {/* Heading */}
-        <div className="text-center mb-20">
+        <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
             <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">How It Works</span>
@@ -406,61 +406,63 @@ function HowToBookSection() {
           <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
             Book in <em className="gold-shimmer not-italic">4 Simple Steps</em>
           </h2>
-          <p className="text-cream/40 text-lg mt-4 max-w-xl mx-auto font-sans font-light" data-reveal data-delay="2">
+          <p className="text-cream/70 text-lg mt-4 max-w-xl mx-auto font-sans font-light" data-reveal data-delay="2">
             From discovery to confirmed booking in minutes — no friction, no complexity.
           </p>
         </div>
 
         {/* Steps */}
-        <div className="flex flex-col gap-0">
+        <div style={{ display: 'grid', gridTemplateRows: 'repeat(6)' }}>
           {steps.map((step, i) => {
             const isEven = i % 2 === 0
             return (
-              <div key={i} className={`relative grid grid-cols-1 lg:grid-cols-2 gap-0 mb-4 overflow-hidden rounded-3xl ${i < steps.length - 1 ? 'mb-6' : ''}`}>
-                {/* IMAGE — alternates left/right */}
-                <div
-                  className={`${isEven ? 'lg:order-1' : 'lg:order-2'} h-72 md:h-96 lg:h-[500px]`}
-                  data-reveal={step.reveal}
-                >
-                  <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
-                </div>
+              <div key={i} className="sticky top-[10vh]" style={{ '--card-idx': i }}>
+                <div className="stacking-card-content relative grid grid-cols-1 lg:grid-cols-2 gap-0 overflow-hidden rounded-[2.5rem] shadow-[0_-15px_50px_rgba(0,0,0,0.6)] bg-[#070d1a] w-full lg:h-[580px]">
+                  {/* IMAGE — alternates left/right */}
+                  <div
+                    className={`${isEven ? 'lg:order-1' : 'lg:order-2'} h-80 md:h-96 lg:h-full`}
+                    data-reveal={step.reveal}
+                  >
+                    <img src={step.img} alt={step.title} className="w-full h-full object-cover" />
+                  </div>
 
-                {/* TEXT */}
-                <div
-                  className={`${isEven ? 'lg:order-2' : 'lg:order-1'} flex items-center bg-gradient-to-br from-navy-800/80 to-[#070d1a]/95 glass border border-white/4`}
-                  data-reveal={isEven ? 'right' : 'left'}
-                >
-                  <div className="p-10 md:p-14 relative">
-                    {/* Giant step number behind */}
-                    <span className="step-number" style={{ left: isEven ? '1.5rem' : 'auto', right: isEven ? 'auto' : '1.5rem' }}>
-                      {step.num}
-                    </span>
+                  {/* TEXT */}
+                  <div
+                    className={`${isEven ? 'lg:order-2' : 'lg:order-1'} flex items-center bg-gradient-to-br from-navy-800/80 to-[#070d1a]/95 glass border border-white/4 lg:h-full`}
+                    data-reveal={isEven ? 'right' : 'left'}
+                  >
+                    <div className="p-10 md:p-14 relative">
+                      {/* Giant step number behind */}
+                      <span className="step-number" style={{ left: isEven ? '1.5rem' : 'auto', right: isEven ? 'auto' : '1.5rem' }}>
+                        {step.num}
+                      </span>
 
-                    <div className="flex items-center gap-3 mb-4">
-                      <span className="text-gold-400/80 font-display text-sm tracking-[0.25em]">STEP {step.num}</span>
-                      <div className="h-px flex-1 bg-gold-400/15" />
-                    </div>
+                      <div className="flex items-center gap-3 mb-4">
+                        <span className="text-gold-400/80 font-display text-base tracking-[0.25em]">STEP {step.num}</span>
+                        <div className="h-px flex-1 bg-gold-400/15" />
+                      </div>
 
-                    <p className="text-gold-400/60 text-xs font-sans tracking-widest uppercase mb-3">{step.subtitle}</p>
-                    <h3 className="font-display text-3xl md:text-4xl text-cream mb-5">{step.title}</h3>
-                    <p className="text-cream/50 text-base md:text-lg leading-relaxed mb-8 font-sans font-light">{step.desc}</p>
+                      <p className="text-gold-400/60 text-sm font-sans tracking-widest uppercase mb-3">{step.subtitle}</p>
+                      <h3 className="font-display text-3xl md:text-4xl text-cream mb-5">{step.title}</h3>
+                      <p className="text-cream/80 text-base md:text-lg leading-relaxed mb-8 font-sans font-light">{step.desc}</p>
 
-                    <div className="flex flex-col gap-3">
-                      {step.features.map((f, j) => (
-                        <div key={j} className="flex items-center gap-3">
-                          <div className="w-5 h-5 rounded-full bg-gold-500/12 border border-gold-500/25 flex items-center justify-center shrink-0">
-                            <CheckCircle size={10} className="text-gold-400" />
+                      <div className="flex flex-col gap-3">
+                        {step.features.map((f, j) => (
+                          <div key={j} className="flex items-center gap-3">
+                            <div className="w-5 h-5 rounded-full bg-gold-500/12 border border-gold-500/25 flex items-center justify-center shrink-0">
+                              <CheckCircle size={10} className="text-gold-400" />
+                            </div>
+                            <span className="text-cream/85 text-base font-sans">{f}</span>
                           </div>
-                          <span className="text-cream/55 text-sm font-sans">{f}</span>
-                        </div>
-                      ))}
-                    </div>
+                        ))}
+                      </div>
 
-                    {i === steps.length - 1 && (
-                      <Link to="/book" className="btn-gold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 text-xs mt-8">
-                        Request a Booking <ChevronRight size={14} />
-                      </Link>
-                    )}
+                      {i === steps.length - 1 && (
+                        <Link to="/book" className="btn-gold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 text-sm mt-8">
+                          Request a Booking <ChevronRight size={14} />
+                        </Link>
+                      )}
+                    </div>
                   </div>
                 </div>
               </div>
@@ -501,7 +503,9 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
         style={{ transition: 'transform 0.15s ease, box-shadow 0.3s ease', transformStyle: 'preserve-3d' }}
         data-reveal data-delay={String(delay)}
       >
-        <div className="overflow-hidden" style={{ height: large ? '440px' : '300px' }}>
+        <div className="overflow-hidden h-full" 
+        // style={{ height: large ? '440px' : '300px' }}
+        >
           <img
             src={venue.image} alt={venue.name}
             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-[800ms]"
@@ -534,14 +538,14 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
           <div className="flex items-end justify-between mb-2">
             <div>
               <h3 className={`font-display text-cream ${large ? 'text-2xl' : 'text-xl'}`}>{venue.name}</h3>
-              <div className="flex items-center gap-3 text-cream/40 text-xs font-sans mt-1.5">
+              <div className="flex items-center gap-3 text-cream/70 text-sm font-sans mt-1.5">
                 <span><Users size={10} className="inline mr-1" />{venue.capacity} guests</span>
                 <span><MapPin size={10} className="inline mr-1" />{venue.type}</span>
               </div>
             </div>
             <div className="text-right ml-4 shrink-0">
               <div className="text-gold-400 font-display text-xl">₹{venue.price / 1000}K</div>
-              <div className="text-cream/30 text-[10px] font-sans">/day</div>
+              <div className="text-cream/60 text-[10px] font-sans">/day</div>
             </div>
           </div>
 
@@ -549,7 +553,7 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
           <div className="overflow-hidden" style={{ maxHeight: '0', transition: 'max-height 0.4s ease' }}
             onMouseEnter={(e) => { e.currentTarget.style.maxHeight = '40px' }}
             onMouseLeave={(e) => { e.currentTarget.style.maxHeight = '0' }}>
-            <div className="pt-3 flex items-center gap-2 text-gold-400 text-xs font-sans border-t border-gold-500/15">
+            <div className="pt-3 flex items-center gap-2 text-gold-400 text-sm font-sans border-t border-gold-500/15">
               View Venue <ArrowUpRight size={12} />
             </div>
           </div>
@@ -561,10 +565,10 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
 
 function VenueShowcase() {
   return (
-    <section className="py-28 relative overflow-hidden">
+    <section className=" relative overflow-hidden">
       <div className="orb w-[700px] h-[700px] bg-teal-800/10 -right-48 top-0" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="section-container">
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-14">
           <div>
@@ -576,7 +580,7 @@ function VenueShowcase() {
               Our Signature <em className="gold-shimmer not-italic">Venues</em>
             </h2>
           </div>
-          <Link to="/venues" className="btn-outline px-7 py-3 rounded-xl flex items-center gap-2 text-xs mt-6 md:mt-0 self-start"
+          <Link to="/venues" className="btn-outline px-7 py-3 rounded-xl flex items-center gap-2 text-sm mt-6 md:mt-0 self-start"
             data-reveal>
             All 6 Venues <ArrowRight size={13} />
           </Link>
@@ -638,7 +642,7 @@ function VenueCategories() {
     <section className="py-28 relative overflow-hidden">
       <div className="orb w-[500px] h-[500px] bg-gold-500/05 left-0 top-1/2 -translate-y-1/2" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="section-container">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
@@ -648,7 +652,7 @@ function VenueCategories() {
           <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
             Find the <em className="gold-shimmer not-italic">Perfect Space</em>
           </h2>
-          <p className="text-cream/40 text-lg mt-4 max-w-lg mx-auto font-sans font-light" data-reveal data-delay="2">
+          <p className="text-cream/70 text-lg mt-4 max-w-lg mx-auto font-sans font-light" data-reveal data-delay="2">
             Every occasion deserves the right venue. Browse by category to find yours.
           </p>
         </div>
@@ -673,8 +677,8 @@ function VenueCategories() {
                   <span className="text-lg mr-2">{cat.icon}</span>
                   <h3 className="font-display text-cream text-xl mt-1">{cat.label}</h3>
                   <div className="category-card-desc">
-                    <p className="text-cream/50 text-xs font-sans leading-relaxed mt-2">{cat.desc}</p>
-                    <div className="flex items-center gap-1 text-gold-400 text-xs font-sans mt-2">
+                    <p className="text-cream/80 text-sm font-sans leading-relaxed mt-2">{cat.desc}</p>
+                    <div className="flex items-center gap-1 text-gold-400 text-sm font-sans mt-2">
                       View venues <ArrowRight size={10} />
                     </div>
                   </div>
@@ -713,7 +717,7 @@ function ImmersiveSpotlight() {
       {/* Decorative orb */}
       <div className="orb w-64 h-64 bg-gold-500/20 right-48 top-1/2 -translate-y-1/2" />
 
-      <div className="relative h-full max-w-7xl mx-auto px-6 flex flex-col justify-center">
+      <div className="relative h-full section-container flex flex-col justify-center">
         <div className="max-w-2xl">
           <div className="flex items-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
@@ -722,7 +726,7 @@ function ImmersiveSpotlight() {
           <h2 className="font-display text-5xl md:text-6xl text-cream mb-4" data-reveal data-delay="1">
             The Grand<br /><em className="gold-shimmer not-italic">Convention Centre</em>
           </h2>
-          <p className="text-cream/55 text-xl leading-relaxed mb-8 font-sans font-light" data-reveal data-delay="2">
+          <p className="text-cream/85 text-xl leading-relaxed mb-8 font-sans font-light" data-reveal data-delay="2">
             India's most prestigious convention venue — 5,000 sqft, 2,000 guests, world-class AV infrastructure, and full catering for the grandest events.
           </p>
 
@@ -738,7 +742,7 @@ function ImmersiveSpotlight() {
                 </div>
                 <div>
                   <div className="text-cream font-display text-xl leading-none">{val}</div>
-                  <div className="text-cream/35 text-xs font-sans">{label}</div>
+                  <div className="text-cream/65 text-sm font-sans">{label}</div>
                 </div>
               </div>
             ))}
@@ -786,7 +790,7 @@ function WhyChooseUs() {
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-teal-900/6 to-transparent pointer-events-none" />
       <div className="orb w-[600px] h-[600px] bg-teal-800/12 -right-40 bottom-0" />
 
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="section-container">
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
@@ -816,7 +820,7 @@ function WhyChooseUs() {
                   <Icon size={24} className="text-gold-400" />
                 </div>
                 <h3 className="font-display text-2xl text-cream mb-3">{title}</h3>
-                <p className="text-cream/50 text-base leading-relaxed font-sans font-light">{desc}</p>
+                <p className="text-cream/80 text-base leading-relaxed font-sans font-light">{desc}</p>
               </div>
             </div>
           ))}
@@ -842,7 +846,7 @@ function AvailabilityTeaser() {
 
   return (
     <section className="py-28 relative overflow-hidden">
-      <div className="max-w-7xl mx-auto px-6">
+      <div className="section-container">
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-16 items-center">
           {/* Left text */}
           <div data-reveal="left">
@@ -853,16 +857,16 @@ function AvailabilityTeaser() {
             <h2 className="font-display text-5xl md:text-6xl text-cream mb-6">
               Check Dates<br /><em className="gold-shimmer not-italic">Instantly</em>
             </h2>
-            <p className="text-cream/50 text-xl leading-relaxed mb-8 font-sans font-light">
+            <p className="text-cream/80 text-xl leading-relaxed mb-8 font-sans font-light">
               Our real-time calendar shows exactly which dates are open. No phone calls, no waiting. Pick a date and book immediately.
             </p>
             {['Green = Fully confirmed bookings', 'Amber = Tentative (date holds available)', 'Click any day to see event details'].map((f, i) => (
               <div key={i} className="flex items-center gap-3 mb-4">
                 <div className="w-2 h-2 rounded-full shrink-0" style={{ background: i === 0 ? '#34d399' : i === 1 ? '#fbbf24' : '#94a3b8' }} />
-                <span className="text-cream/50 text-sm font-sans">{f}</span>
+                <span className="text-cream/80 text-base font-sans">{f}</span>
               </div>
             ))}
-            <Link to="/book" className="btn-gold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 text-xs mt-6">
+            <Link to="/book" className="btn-gold px-8 py-3.5 rounded-xl inline-flex items-center gap-2 text-sm mt-6">
               Check Availability Now <ArrowRight size={14} />
             </Link>
           </div>
@@ -876,7 +880,7 @@ function AvailabilityTeaser() {
               </div>
               <div className="flex gap-2">
                 {[ChevronLeft, ChevronRight].map((Icon, i) => (
-                  <button key={i} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-cream/35 hover:text-cream transition-colors border border-white/5">
+                  <button key={i} className="w-8 h-8 glass rounded-lg flex items-center justify-center text-cream/65 hover:text-cream transition-colors border border-white/5">
                     <Icon size={13} />
                   </button>
                 ))}
@@ -885,7 +889,7 @@ function AvailabilityTeaser() {
 
             <div className="grid grid-cols-7 mb-1">
               {['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'].map((d) => (
-                <div key={d} className="text-center text-cream/20 text-[11px] font-sans py-2">{d}</div>
+                <div key={d} className="text-center text-cream/50 text-[11px] font-sans py-2">{d}</div>
               ))}
             </div>
             <div className="grid grid-cols-7 gap-1">
@@ -897,7 +901,7 @@ function AvailabilityTeaser() {
                   <button key={day}
                     onClick={() => setSelected(isSel ? null : day)}
                     className={`aspect-square flex flex-col items-center justify-center rounded-xl text-[11px] font-sans transition-all duration-200
-                      ${isSel ? 'bg-gold-500/20 border border-gold-500/40 text-gold-400' : 'hover:bg-white/5 ' + (status ? 'text-cream' : 'text-cream/30')}`}
+                      ${isSel ? 'bg-gold-500/20 border border-gold-500/40 text-gold-400' : 'hover:bg-white/5 ' + (status ? 'text-cream' : 'text-cream/60')}`}
                   >
                     <span className={isSel ? 'font-semibold' : ''}>{day}</span>
                     {status && <div className={`w-1 h-1 rounded-full mt-0.5 ${statusDot[status]}`} />}
@@ -910,7 +914,7 @@ function AvailabilityTeaser() {
               {[['Confirmed', 'emerald'], ['Tentative', 'amber'], ['Open', 'slate']].map(([label, clr]) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <div className={`w-2 h-2 rounded-full bg-${clr}-400`} />
-                  <span className="text-cream/30 text-[10px] font-sans">{label}</span>
+                  <span className="text-cream/60 text-[10px] font-sans">{label}</span>
                 </div>
               ))}
             </div>
@@ -919,7 +923,7 @@ function AvailabilityTeaser() {
               <div className="mt-4 pt-4 border-t border-gold-500/15 flex items-center gap-3">
                 <div className={`w-2.5 h-2.5 rounded-full ${statusDot[events[selected]]} shrink-0`} />
                 <div>
-                  <span className="text-cream text-sm font-sans font-medium">April {selected}, 2026</span>
+                  <span className="text-cream text-base font-sans font-medium">April {selected}, 2026</span>
                   <span className={`ml-2 text-[10px] px-2 py-0.5 rounded-full capitalize font-sans
                     ${events[selected] === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400' : 'bg-amber-400/15 text-amber-400'}`}>
                     {events[selected]}
@@ -960,7 +964,7 @@ function TestimonialsSection() {
         <div className="absolute inset-0 bg-[#070d1a]/92" />
       </div>
 
-      <div className="relative max-w-7xl mx-auto px-6">
+      <div className="relative section-container">
         <div className="text-center mb-14" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-5">
             <div className="h-px w-12 bg-gold-400" />
@@ -972,7 +976,7 @@ function TestimonialsSection() {
           </h2>
         </div>
 
-        <div className="relative max-w-4xl mx-auto" style={{ minHeight: '340px' }}>
+        <div className="relative section-container" style={{ minHeight: '340px' }}>
           {testimonials.map((t, i) => (
             <div key={i} className={`transition-all duration-800 ${i === active ? 'opacity-100 translate-y-0 relative' : 'opacity-0 translate-y-6 absolute inset-0 pointer-events-none'}`}
               style={{ transition: 'opacity 0.8s ease, transform 0.8s ease' }}>
@@ -984,7 +988,7 @@ function TestimonialsSection() {
                   {[...Array(t.rating)].map((_, j) => <Star key={j} size={17} className="text-gold-400 fill-gold-400" />)}
                 </div>
 
-                <blockquote className="font-display text-2xl md:text-3xl text-cream/80 italic leading-relaxed mb-10">
+                <blockquote className="font-display text-2xl md:text-3xl text-cream/90 italic leading-relaxed mb-10">
                   {t.text}
                 </blockquote>
 
@@ -992,7 +996,7 @@ function TestimonialsSection() {
                   <img src={t.avatar} alt={t.name} className="w-14 h-14 rounded-full object-cover border-2 border-gold-500/30" />
                   <div className="text-left">
                     <div className="text-cream font-sans font-semibold text-base">{t.name}</div>
-                    <div className="text-gold-400/55 text-sm font-sans">{t.role}</div>
+                    <div className="text-gold-400/55 text-base font-sans">{t.role}</div>
                   </div>
                 </div>
               </div>
@@ -1039,7 +1043,7 @@ function CTABanner() {
 
       {/* Content */}
       <div className="absolute inset-0 flex items-center">
-        <div className="max-w-7xl mx-auto px-10 md:px-20 w-full flex flex-col md:flex-row items-center justify-between gap-10">
+        <div className="section-container flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-5">
               <div className="h-px w-12 bg-gold-400" />
@@ -1049,7 +1053,7 @@ function CTABanner() {
               Ready to Host Your<br />
               <em className="gold-shimmer not-italic">Next Grand Event?</em>
             </h2>
-            <p className="text-cream/50 text-lg font-sans font-light leading-relaxed">
+            <p className="text-cream/80 text-lg font-sans font-light leading-relaxed">
               From intimate boardrooms to grand exhibition halls — real-time availability, instant confirmation, zero conflicts.
             </p>
           </div>

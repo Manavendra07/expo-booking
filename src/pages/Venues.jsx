@@ -70,10 +70,10 @@ export default function Venues() {
           <div className="absolute inset-0 bg-gradient-to-b from-navy-950 via-navy-950/20 to-navy-950" />
         </div>
 
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center">
+        <div className="section-container relative z-10 text-center">
           <div className="flex items-center justify-center gap-3 mb-6" data-reveal="fade">
             <div className="h-px w-12 bg-gold-500/50" />
-            <span className="text-gold-400 text-xs tracking-[0.4em] uppercase font-sans font-medium">World Class Venues</span>
+            <span className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">World Class Venues</span>
             <div className="h-px w-12 bg-gold-500/50" />
           </div>
           
@@ -89,7 +89,7 @@ export default function Venues() {
                 placeholder="Search by name, type, or tag..." 
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 bg-navy-950/50 border border-gold-500/20 rounded-full text-cream placeholder:text-cream/20 backdrop-blur-md focus:border-gold-400/50 transition-all outline-none"
+                className="w-full pl-12 pr-6 py-4 bg-navy-950/50 border border-gold-500/20 rounded-full text-cream placeholder:text-cream/50 backdrop-blur-md focus:border-gold-400/50 transition-all outline-none"
               />
             </div>
           </div>
@@ -102,7 +102,7 @@ export default function Venues() {
 
       {/* Filter Bar */}
       <div className="sticky top-16 z-40 -mt-10">
-        <div className="max-w-7xl mx-auto px-6">
+        <div className="section-container">
           <div className="glass rounded-2xl p-4 md:p-6 flex flex-col lg:flex-row gap-6 items-center justify-between border border-gold-500/10 shadow-2xl">
             
             {/* Category Pills */}
@@ -114,7 +114,7 @@ export default function Venues() {
                   className={`px-5 py-2 rounded-full text-[11px] font-sans tracking-widest uppercase transition-all whitespace-nowrap border ${
                     selectedType === type
                       ? 'bg-gold-gradient text-navy-950 border-gold-400 font-bold shadow-lg shadow-gold-500/20'
-                      : 'bg-white/05 text-cream/40 border-white/05 hover:border-gold-500/30 hover:text-cream'
+                      : 'bg-white/05 text-cream/70 border-white/05 hover:border-gold-500/30 hover:text-cream'
                   }`}
                 >
                   {type}
@@ -125,8 +125,8 @@ export default function Venues() {
             <div className="flex items-center gap-4 w-full lg:w-auto justify-end">
               <button 
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-xs font-sans tracking-widest uppercase border transition-all ${
-                  showFilters ? 'bg-gold-500/10 border-gold-400 text-gold-400' : 'bg-white/05 border-white/10 text-cream/60'
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-sans tracking-widest uppercase border transition-all ${
+                  showFilters ? 'bg-gold-500/10 border-gold-400 text-gold-400' : 'bg-white/05 border-white/10 text-cream/90'
                 }`}
               >
                 <Filter size={14} /> Advanced Filters
@@ -134,7 +134,7 @@ export default function Venues() {
               
               <div className="h-8 w-px bg-gold-500/10 hidden md:block" />
               
-              <p className="text-cream/30 text-xs font-sans tracking-widest uppercase hidden md:block">
+              <p className="text-cream/60 text-sm font-sans tracking-widest uppercase hidden md:block">
                 <span className="text-gold-400 font-bold">{filtered.length}</span> Results
               </p>
             </div>
@@ -151,12 +151,12 @@ export default function Venues() {
                     placeholder="e.g. 500 Guests" 
                     value={capacity}
                     onChange={e => setCapacity(e.target.value)}
-                    className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-sm text-cream outline-none focus:border-gold-400/30 transition-all"
+                    className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all"
                   />
                 </div>
                 <div>
                   <label className="text-gold-500/50 text-[10px] tracking-[0.3em] uppercase mb-3 block">Sort By</label>
-                  <select className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-sm text-cream outline-none focus:border-gold-400/30 transition-all appearance-none cursor-pointer">
+                  <select className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all appearance-none cursor-pointer">
                     <option>Recommended</option>
                     <option>Capacity: High to Low</option>
                     <option>Price: Low to High</option>
@@ -167,7 +167,7 @@ export default function Venues() {
                   {(search || selectedType !== 'All' || capacity) && (
                     <button 
                       onClick={() => { setSearch(''); setSelectedType('All'); setCapacity('') }}
-                      className="flex items-center gap-2 text-red-400/70 hover:text-red-400 text-xs transition-colors mb-4"
+                      className="flex items-center gap-2 text-red-400/70 hover:text-red-400 text-sm transition-colors mb-4"
                     >
                       <X size={14} /> Clear All Filters
                     </button>
@@ -180,17 +180,17 @@ export default function Venues() {
       </div>
 
       {/* Grid */}
-      <div className="max-w-7xl mx-auto px-6 py-20">
+      <div className="section-container py-20">
         {filtered.length === 0 ? (
           <div className="text-center py-32 glass rounded-3xl border border-gold-500/10" data-reveal="fade">
             <div className="w-24 h-24 bg-gold-500/10 border border-gold-500/20 rounded-full flex items-center justify-center mx-auto mb-8">
               <Building2 size={32} className="text-gold-400/40" />
             </div>
             <h3 className="font-display text-4xl text-cream mb-4">No venues match your vision</h3>
-            <p className="text-cream/40 text-lg max-w-md mx-auto">Try refining your search or explore our most popular categories.</p>
+            <p className="text-cream/70 text-lg max-w-md mx-auto">Try refining your search or explore our most popular categories.</p>
             <button 
               onClick={() => { setSearch(''); setSelectedType('All'); setCapacity('') }}
-              className="btn-gold px-8 py-3 rounded-full text-xs mt-10"
+              className="btn-gold px-8 py-3 rounded-full text-sm mt-10"
             >
               Reset All Filters
             </button>
@@ -207,14 +207,14 @@ export default function Venues() {
       </div>
 
       {/* Bottom CTA */}
-      <div className="max-w-5xl mx-auto px-6 relative py-10" data-reveal="fade">
+      <div className="section-container relative py-10" data-reveal="fade">
         <div className="section-line mb-10" />
         <div className="flex flex-col md:flex-row items-center justify-between gap-8">
           <div>
             <h4 className="font-display text-2xl text-cream mb-2">Can't find what you're looking for?</h4>
-            <p className="text-cream/40">Our concierge team can help you source the perfect space for your event.</p>
+            <p className="text-cream/70">Our concierge team can help you source the perfect space for your event.</p>
           </div>
-          <button className="btn-outline px-10 py-4 rounded-full text-xs shrink-0">
+          <button className="btn-outline px-10 py-4 rounded-full text-sm shrink-0">
             Speak to a Consultant
           </button>
         </div>

@@ -57,13 +57,13 @@ export default function VenueCard({ venue, delay = 1 }) {
           {/* Rating Prompt */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 glass rounded-full px-3 py-1.5 border border-white/10 z-20">
             <Star size={12} className="text-gold-400 fill-gold-400" />
-            <span className="text-gold-400 text-xs font-sans font-bold">{venue.rating}</span>
+            <span className="text-gold-400 text-sm font-sans font-bold">{venue.rating}</span>
           </div>
 
           {/* Pricing Overlay */}
           <div className="absolute bottom-5 right-5 glass rounded-2xl px-4 py-2 text-right z-20 border border-white/05 shadow-2xl">
             <div className="text-gold-400 font-display text-2xl font-bold">{formatPrice(venue.price)}</div>
-            <div className="text-cream/30 text-[9px] tracking-widest uppercase font-medium">per day segment</div>
+            <div className="text-cream/60 text-[9px] tracking-widest uppercase font-medium">per day segment</div>
           </div>
         </div>
 
@@ -76,7 +76,7 @@ export default function VenueCard({ venue, delay = 1 }) {
 
           <h3 className="font-display text-2xl text-cream mb-2 leading-tight group-hover:text-gold-400 transition-colors duration-500">{venue.name}</h3>
 
-          <div className="flex items-center gap-2 text-cream/40 text-[11px] mb-6 font-sans">
+          <div className="flex items-center gap-2 text-cream/70 text-[11px] mb-6 font-sans">
             <MapPin size={12} className="text-gold-500/50" />
             <span>{venue.location}</span>
           </div>
@@ -87,13 +87,13 @@ export default function VenueCard({ venue, delay = 1 }) {
               <div className="flex items-center gap-2 text-gold-500/40 text-[9px] tracking-widest uppercase mb-1.5">
                 <Users size={12} /> Capacity
               </div>
-              <div className="text-cream text-sm font-bold">{venue.capacity.toLocaleString()} guests</div>
+              <div className="text-cream text-base font-bold">{venue.capacity.toLocaleString()} guests</div>
             </div>
             <div className="glass-light rounded-2xl p-4 border border-white/05">
               <div className="flex items-center gap-2 text-gold-500/40 text-[9px] tracking-widest uppercase mb-1.5">
                  <Maximize size={12} /> Dimensions
               </div>
-              <div className="text-cream text-sm font-bold">{venue.area}</div>
+              <div className="text-cream text-base font-bold">{venue.area}</div>
             </div>
           </div>
 
@@ -107,7 +107,7 @@ export default function VenueCard({ venue, delay = 1 }) {
             </Link>
             <Link 
               to={`/book?venue=${venue.id}`}
-              className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-cream/30 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300"
+              className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-cream/60 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300"
               title="Quick Booking Accord"
             >
               <ArrowRight size={20} />
