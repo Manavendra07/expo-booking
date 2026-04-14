@@ -837,10 +837,18 @@ function AvailabilityTeaser() {
   const [selected, setSelected] = useState(null)
 
   const events = {
-    3: 'confirmed', 4: 'confirmed', 8: 'tentative',
-    12: 'tentative', 13: 'tentative', 16: 'draft',
-    19: 'confirmed', 20: 'confirmed', 21: 'confirmed',
-    25: 'tentative', 28: 'confirmed', 29: 'confirmed',
+    3: { status: 'confirmed', title: 'Global Tech Summit', hall: 'Grand Convention Centre' },
+    4: { status: 'confirmed', title: 'Global Tech Summit', hall: 'Grand Convention Centre' },
+    8: { status: 'tentative', title: 'Sharma Wedding', hall: 'Grand Ballroom' },
+    12: { status: 'tentative', title: 'Corporate Workshop', hall: 'Boardroom Alpha' },
+    13: { status: 'tentative', title: 'Corporate Workshop', hall: 'Boardroom Alpha' },
+    16: { status: 'draft', title: 'Internal Meeting', hall: 'Pavilion Hall' },
+    19: { status: 'confirmed', title: 'Auto Expo 2026', hall: 'Pavilion Hall' },
+    20: { status: 'confirmed', title: 'Auto Expo 2026', hall: 'Pavilion Hall' },
+    21: { status: 'confirmed', title: 'Auto Expo 2026', hall: 'Pavilion Hall' },
+    25: { status: 'tentative', title: 'Startup Pitch Day', hall: 'Sky Lounge' },
+    28: { status: 'confirmed', title: 'Fashion Week', hall: 'Grand Convention Centre' },
+    29: { status: 'confirmed', title: 'Fashion Week', hall: 'Grand Convention Centre' },
   }
   const statusDot = { confirmed: 'bg-emerald-400', tentative: 'bg-amber-400', draft: 'bg-slate-400' }
 
@@ -895,7 +903,8 @@ function AvailabilityTeaser() {
             <div className="grid grid-cols-7 gap-1">
               {Array.from({ length: 3 }).map((_, i) => <div key={i} />)}
               {Array.from({ length: 30 }, (_, i) => i + 1).map((day) => {
-                const status = events[day]
+                const ev = events[day]
+                const status = ev ? ev.status : null
                 const isSel = selected === day
                 return (
                   <button key={day}
@@ -920,14 +929,27 @@ function AvailabilityTeaser() {
             </div>
 
             {selected && events[selected] && (
-              <div className="mt-4 pt-4 border-t border-gold-500/15 flex items-center gap-3">
-                <div className={`w-2.5 h-2.5 rounded-full ${statusDot[events[selected]]} shrink-0`} />
-                <div>
-                  <span className="text-cream text-base font-sans font-medium">April {selected}, 2026</span>
-                  <span className={`ml-2 text-[11px] px-2 py-0.5 rounded-full capitalize font-sans
-                    ${events[selected] === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400' : 'bg-amber-400/15 text-amber-400'}`}>
-                    {events[selected]}
+              <div className="mt-4 pt-4 border-t border-gold-500/15 animate-slide-up">
+                <div className="flex items-center justify-between mb-3">
+                  <div className="flex items-center gap-3">
+                    <div className={`w-2.5 h-2.5 rounded-full ${statusDot[events[selected].status]} shrink-0`} />
+                    <span className="text-cream text-sm font-sans font-medium">April {selected}, 2026</span>
+                  </div>
+                  <span className={`text-[10px] px-2 py-0.5 rounded-full capitalize font-sans
+                    ${events[selected].status === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400 border border-emerald-400/20' : 
+                      events[selected].status === 'tentative' ? 'bg-amber-400/15 text-amber-400 border border-amber-400/20' : 
+                      'bg-slate-400/15 text-slate-400 border border-slate-400/20'}`}>
+                    {events[selected].status}
                   </span>
+                </div>
+                
+                <div className="glass rounded-xl p-4 border border-white/5 bg-white/[0.02]">
+                  <h4 className="text-gold-400 font-display text-xl leading-tight mb-2">{events[selected].title}</h4>
+                  <div className="flex flex-col gap-2">
+                    <div className="flex items-center gap-2 text-cream/70 text-[11px] font-sans tracking-wide">
+                      <MapPin size={12} className="text-gold-400/50" /> {events[selected].hall}
+                    </div>
+                  </div>
                 </div>
               </div>
             )}

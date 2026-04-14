@@ -1,4 +1,4 @@
-import { useState, useEffect, useMemo, useCallback } from 'react'
+import { useState, useEffect, useMemo, useCallback, useRef } from 'react'
 import { Link } from 'react-router-dom'
 import {
   Calendar, Users, MapPin, Clock, CheckCircle, AlertCircle,
@@ -7,6 +7,9 @@ import {
   LayoutGrid, CalendarDays, Filter, Building2, Tag, Sparkles,
   Phone, Mail, Layers, IndianRupee, CalendarCheck, AlertTriangle
 } from 'lucide-react'
+import html2canvas from 'html2canvas'
+import { jsPDF } from 'jspdf'
+import { toast } from 'sonner'
 import { venues, industries } from '../data/staticData'
 import { getBookings, withdrawBooking } from '../utils/bookingStore'
 import { useScrollReveal } from '../hooks/useScrollReveal'
@@ -42,18 +45,37 @@ const statusConfig = {
 function BookingDetailModal({ booking, onClose, onWithdraw }) {
   const st = statusConfig[booking.status] || statusConfig.tentative
   const StatusIcon = st.icon
+  const pdfRef = useRef(null)
 
   useEffect(() => {
     document.body.style.overflow = 'hidden'
     return () => { document.body.style.overflow = '' }
   }, [])
 
+  const handleDownloadPDF = async () => {
+    if (!pdfRef.current) return
+    const toastId = toast.loading('Generating Contract PDF...')
+    try {
+      const canvas = await html2canvas(pdfRef.current, { scale: 2, useCORS: true, logging: false })
+      const imgData = canvas.toDataURL('image/png')
+      const pdf = new jsPDF({ orientation: 'p', unit: 'mm', format: 'a4' })
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = (canvas.height * pdfWidth) / canvas.width
+      pdf.addImage(imgData, 'PNG', 0, 0, pdfWidth, pdfHeight)
+      pdf.save(`ExpoInn_Contract_${booking.id}.pdf`)
+      toast.success('Contract Downloaded Successfully!', { id: toastId })
+    } catch (error) {
+      toast.error('Failed to generate PDF contract.', { id: toastId })
+    }
+  }
+
   return (
-    <div
-      className="fixed inset-0 z-[200] flex items-center justify-center p-4"
-      style={{ background: 'rgba(5,8,20,0.85)', backdropFilter: 'blur(12px)' }}
-      onClick={onClose}
-    >
+    <>
+      <div
+        className="fixed inset-0 z-[200] flex items-center justify-center p-4"
+        style={{ background: 'rgba(5,8,20,0.85)', backdropFilter: 'blur(12px)' }}
+        onClick={onClose}
+      >
       <div
         className="relative w-full max-w-2xl glass rounded-[32px] border border-gold-500/20 overflow-hidden shadow-2xl shadow-gold-500/10 animate-slide-up"
         onClick={e => e.stopPropagation()}
@@ -189,8 +211,8 @@ function BookingDetailModal({ booking, onClose, onWithdraw }) {
                 <CheckCircle size={13} /> Formalize
               </button>
             )}
-            <button className="btn-outline px-6 py-2.5 rounded-2xl text-xs font-bold tracking-widest uppercase flex items-center gap-2">
-              <Download size={13} /> Contract
+            <button onClick={handleDownloadPDF} className="btn-outline px-6 py-2.5 rounded-2xl text-xs font-bold tracking-widest uppercase flex items-center gap-2 transition-all hover:bg-white/10">
+              <Download size={13} /> Download PDF
             </button>
           </div>
           {booking.status !== 'cancelled' && booking.status !== 'completed' && (
@@ -202,8 +224,104 @@ function BookingDetailModal({ booking, onClose, onWithdraw }) {
             </button>
           )}
         </div>
+        </div>
       </div>
-    </div>
+
+      {/* Hidden PDF Printable Layout */}
+      <div style={{ position: 'absolute', top: '-9999px', left: '-9999px' }}>
+        <div ref={pdfRef} className="w-[794px] bg-white p-12 text-navy-900 font-sans" style={{ minHeight: '1123px' }}>
+          {/* Header */}
+          <div className="flex justify-between items-start border-b-2 border-gold-500 pb-8 mb-8">
+            <div>
+              <div className="text-3xl font-display font-bold text-navy-900 mb-1">ExpoInn Booking Contract</div>
+              <div className="text-sm text-gray-500 font-medium tracking-wide uppercase">Booking Ref: {booking.id}</div>
+              <div className="text-sm text-gray-500 font-medium tracking-wide uppercase mt-1">Generated: {new Date().toLocaleDateString()}</div>
+            </div>
+            <div className="text-right">
+              <div className="text-xl font-display text-gold-500 font-bold mb-1">EXPOINN WORLDWIDE</div>
+              <p className="text-sm text-gray-600">100 Convention Blvd<br />Metropolis, EX 10001<br />billing@expoinn.com</p>
+            </div>
+          </div>
+
+          {/* Client & Event Info */}
+          <div className="grid grid-cols-2 gap-12 mb-10">
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gold-500 mb-4 border-b border-gray-200 pb-2">Client Details</h3>
+              <p className="font-bold text-lg text-navy-900 mb-1">{booking.organizer || 'N/A'}</p>
+              <p className="text-gray-700">{booking.company || 'N/A'}</p>
+              <p className="text-gray-700 mt-2">{booking.email}</p>
+              <p className="text-gray-700">{booking.phone}</p>
+            </div>
+            <div>
+              <h3 className="text-xs font-bold uppercase tracking-widest text-gold-500 mb-4 border-b border-gray-200 pb-2">Event Specifications</h3>
+              <p className="font-bold text-lg text-navy-900 mb-1">{booking.eventName || 'Unnamed Event'}</p>
+              <div className="grid grid-cols-2 gap-2 mt-3 text-sm">
+                <span className="text-gray-500">Event Type:</span><span className="font-medium text-navy-900 text-right">{booking.eventType || 'N/A'}</span>
+                <span className="text-gray-500">Expected Guests:</span><span className="font-medium text-navy-900 text-right">{booking.guests || 'N/A'}</span>
+                <span className="text-gray-500">Industry:</span><span className="font-medium text-navy-900 text-right">{booking.industry || 'N/A'}</span>
+                <span className="text-gray-500">Time Slot:</span><span className="font-medium text-navy-900 text-right">{booking.timeSlot || 'N/A'}</span>
+              </div>
+            </div>
+          </div>
+
+          {/* Venue Schedule */}
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gold-500 mb-4 border-b border-gray-200 pb-2">Schedule & Location</h3>
+          <div className="bg-gray-50 p-6 border border-gray-200 rounded-lg mb-10">
+            <p className="text-xl font-bold text-navy-900 mb-4">{booking.venue} — {booking.hall}</p>
+            <div className="flex justify-between items-center text-sm font-medium">
+              <div className="text-center">
+                <p className="text-gray-500 text-xs mb-1 uppercase tracking-wider">Setup Date</p>
+                <p className="text-navy-900">{new Date(booking.setupDate).toLocaleDateString()}</p>
+              </div>
+              <div className="flex-1 h-px bg-gold-500/30 mx-4" />
+              <div className="text-center">
+                <p className="text-gray-500 text-xs mb-1 uppercase tracking-wider">Event Date</p>
+                <p className="text-gold-500 font-bold">{new Date(booking.eventDate).toLocaleDateString()}</p>
+              </div>
+              <div className="flex-1 h-px bg-gold-500/30 mx-4" />
+              <div className="text-center">
+                <p className="text-gray-500 text-xs mb-1 uppercase tracking-wider">Dismantle Date</p>
+                <p className="text-navy-900">{new Date(booking.dismantleDate).toLocaleDateString()}</p>
+              </div>
+            </div>
+          </div>
+
+          {/* Financials */}
+          <h3 className="text-xs font-bold uppercase tracking-widest text-gold-500 mb-4 border-b border-gray-200 pb-2">Financial Breakdown</h3>
+          <table className="w-full text-sm mb-12">
+            <thead>
+              <tr className="border-b border-gray-300">
+                <th className="py-3 text-left text-gray-500 font-medium">Description</th>
+                <th className="py-3 text-right text-gray-500 font-medium">Amount</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr className="border-b border-gray-100">
+                <td className="py-4 text-navy-900 font-medium">Venue Rental ({booking.hall})</td>
+                <td className="py-4 text-navy-900 text-right">₹{booking.amount?.toLocaleString()}</td>
+              </tr>
+              <tr className="border-b-2 border-navy-900">
+                <td className="py-4 text-navy-900 font-bold text-right pr-8">Total Estimations</td>
+                <td className="py-4 text-navy-900 font-bold text-right text-xl">₹{booking.amount?.toLocaleString()}</td>
+              </tr>
+            </tbody>
+          </table>
+
+          {/* Terms */}
+          <div className="text-xs text-gray-500 leading-relaxed pt-10 border-t border-gray-200 space-y-2">
+            <p className="font-bold text-gray-700">Contract Terms & Conditions:</p>
+            <p>1. This document serves as a formal binding agreement between ExpoInn Worldwide and the aforementioned Client.</p>
+            <p>2. A base deposit of 20% is required to secure the dates. The remaining balance must be paid 14 days prior to the Setup Date.</p>
+            <p>3. Cancellations made within 30 days of the Setup Date are subject to a 50% retention fee.</p>
+            <p>4. All structural setups and electrical wiring inside the venue must comply with ExpoInn Safety standards.</p>
+          </div>
+          
+          <div className="mt-16 text-center text-xs text-gray-400 font-medium uppercase tracking-[0.2em]">
+            Thank you for choosing ExpoInn
+          </div>
+        </div>
+      </div>
+    </>
   )
 }
 
@@ -284,8 +402,9 @@ function BookingCard({ booking, idx, onWithdraw, onViewDetail }) {
       </div>
 
       {/* Expanded Panel */}
-      <div className={`overflow-hidden transition-all duration-700 ease-in-out ${expanded ? 'max-h-[500px] opacity-100' : 'max-h-0 opacity-0'}`}>
-        <div className="px-8 pb-8 pt-2">
+      {expanded && (
+        <div className="animate-slide-up opacity-100">
+          <div className="px-8 pb-8 pt-2">
           <div className="h-px bg-white/05 mb-6" />
           <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
             {[
@@ -335,7 +454,8 @@ function BookingCard({ booking, idx, onWithdraw, onViewDetail }) {
             )}
           </div>
         </div>
-      </div>
+        </div>
+      )}
     </div>
   )
 }
