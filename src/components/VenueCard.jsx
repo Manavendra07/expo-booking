@@ -13,7 +13,7 @@ export default function VenueCard({ venue, delay = 1 }) {
     const y = (e.clientY - r.top) / r.height - 0.5
     el.style.transform = `perspective(1000px) rotateY(${x * 12}deg) rotateX(${-y * 12}deg) translateZ(10px)`
     el.style.boxShadow = `${-x * 30}px ${y * 20}px 50px rgba(0,0,0,0.5), 0 0 40px rgba(201,168,76,0.15)`
-    
+
     // Light effect
     const light = el.querySelector('.card-light')
     if (light) {
@@ -53,7 +53,7 @@ export default function VenueCard({ venue, delay = 1 }) {
             className="w-full h-full object-cover transition-transform duration-[1.5s] ease-out group-hover:scale-110"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent" />
-          
+
           {/* Rating Prompt */}
           <div className="absolute top-4 right-4 flex items-center gap-1.5 glass rounded-full px-3 py-1.5 border border-white/10 z-20">
             <Star size={12} className="text-gold-400 fill-gold-400" />
@@ -70,28 +70,28 @@ export default function VenueCard({ venue, delay = 1 }) {
         {/* Content Section */}
         <div className="p-8">
           <div className="flex items-center gap-2 mb-3">
-             <div className="h-px w-6 bg-gold-400/40" />
-             <span className="text-gold-500 text-[10px] tracking-[0.3em] uppercase font-sans font-medium">{venue.type}</span>
+            <div className="h-px w-6 bg-gold-400/40" />
+            <span className="text-gold-500 text-[12px] tracking-[0.3em] uppercase font-sans font-medium">{venue.type}</span>
           </div>
 
           <h3 className="font-display text-2xl text-cream mb-2 leading-tight group-hover:text-gold-400 transition-colors duration-500">{venue.name}</h3>
 
-          <div className="flex items-center gap-2 text-cream/70 text-[11px] mb-6 font-sans">
-            <MapPin size={12} className="text-gold-500/50" />
+          <div className="flex items-center gap-2 text-cream/80 text-[12px] mb-6 font-sans">
+            <MapPin size={12} className="text-gold-500/80" />
             <span>{venue.location}</span>
           </div>
 
           {/* Luxury Stats Bar */}
           <div className="grid grid-cols-2 gap-4 mb-8">
-            <div className="glass-light rounded-2xl p-4 border border-white/05">
-              <div className="flex items-center gap-2 text-gold-500/40 text-[9px] tracking-widest uppercase mb-1.5">
-                <Users size={12} /> Capacity
+            <div className="glass-light rounded-2xl p-3 border border-white/05">
+              <div className="flex items-center gap-2 text-gold-500/80 text-[12px] tracking-widest uppercase mb-1.5">
+                <Users size={14} /> Capacity
               </div>
               <div className="text-cream text-base font-bold">{venue.capacity.toLocaleString()} guests</div>
             </div>
-            <div className="glass-light rounded-2xl p-4 border border-white/05">
-              <div className="flex items-center gap-2 text-gold-500/40 text-[9px] tracking-widest uppercase mb-1.5">
-                 <Maximize size={12} /> Dimensions
+            <div className="glass-light rounded-2xl p-3 border border-white/05">
+              <div className="flex items-center gap-2 text-gold-500/80 text-[12px] tracking-widest uppercase mb-1.5">
+                <Maximize size={14} /> Dimensions
               </div>
               <div className="text-cream text-base font-bold">{venue.area}</div>
             </div>
@@ -99,13 +99,13 @@ export default function VenueCard({ venue, delay = 1 }) {
 
           {/* Primary Action */}
           <div className="flex items-center gap-3">
-            <Link 
+            <Link
               to={`/venues/${venue.slug}`}
               className="flex-1 btn-gold py-4 rounded-2xl flex items-center justify-center gap-2 text-[11px] font-bold tracking-[0.2em] uppercase transition-all duration-300 hover:scale-[1.03] active:scale-[0.98] shadow-xl shadow-gold-500/10"
             >
               Examine Space <ArrowUpRight size={14} />
             </Link>
-            <Link 
+            <Link
               to={`/book?venue=${venue.id}`}
               className="w-14 h-14 glass flex items-center justify-center rounded-2xl text-cream/60 hover:text-gold-400 hover:border-gold-500/30 transition-all duration-300"
               title="Quick Booking Accord"

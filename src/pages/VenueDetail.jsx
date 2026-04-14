@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { useParams, Link } from 'react-router-dom'
-import { 
-  Users, Maximize, Star, MapPin, CheckCircle, ArrowRight, 
+import {
+  Users, Maximize, Star, MapPin, CheckCircle, ArrowRight,
   ChevronLeft, Calendar, Shield, Share2, Heart, Info, Clock, ArrowUpRight
 } from 'lucide-react'
 import { venues } from '../data/staticData'
@@ -13,12 +13,12 @@ function VenueAvailabilityWidget({ venueId, venueName }) {
   const now = new Date()
   const year = now.getFullYear()
   const month = now.getMonth()
-  const monthNames = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep','Oct','Nov','Dec']
+  const monthNames = ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec']
 
   // Deterministic synthetic booking data per venue
   const bookedMap = {}
   const seed = (venueId || 1) * 7
-  const slots = [2,5,8,11,14,17,19,22,25,27]
+  const slots = [2, 5, 8, 11, 14, 17, 19, 22, 25, 27]
   slots.forEach((d, i) => {
     const day = ((d + seed) % 28) + 1
     bookedMap[day] = i % 3 === 0 ? 'confirmed' : 'tentative'
@@ -32,11 +32,11 @@ function VenueAvailabilityWidget({ venueId, venueName }) {
   return (
     <div>
       <div className="flex items-center justify-between mb-3">
-        <span className="text-cream/60 text-[10px] font-sans">{monthNames[month]} {year}</span>
+        <span className="text-cream/60 text-[11px] font-sans">{monthNames[month]} {year}</span>
         <div className="flex gap-3">
-          {[['#34d399','Booked'],['#fbbf24','Tentative'],['rgba(255,255,255,0.25)','Open']].map(([c,l]) => (
+          {[['#34d399', 'Booked'], ['#fbbf24', 'Tentative'], ['rgba(255,255,255,0.25)', 'Open']].map(([c, l]) => (
             <div key={l} className="flex items-center gap-1">
-              <div className="w-1.5 h-1.5 rounded-full" style={{background:c}} />
+              <div className="w-1.5 h-1.5 rounded-full" style={{ background: c }} />
               <span className="text-cream/55 text-[9px]">{l}</span>
             </div>
           ))}
@@ -44,24 +44,24 @@ function VenueAvailabilityWidget({ venueId, venueName }) {
       </div>
 
       <div className="grid grid-cols-7 mb-1">
-        {['S','M','T','W','T','F','S'].map((d,i) => (
+        {['S', 'M', 'T', 'W', 'T', 'F', 'S'].map((d, i) => (
           <div key={i} className="text-center text-cream/45 text-[9px] py-1">{d}</div>
         ))}
       </div>
       <div className="grid grid-cols-7 gap-0.5">
-        {Array.from({length: firstDay}).map((_,i) => <div key={i} />)}
-        {Array.from({length: daysInMonth}, (_,i) => i+1).map(day => {
+        {Array.from({ length: firstDay }).map((_, i) => <div key={i} />)}
+        {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => {
           const status = bookedMap[day]
           const isSel = selDay === day
-          const isPast = new Date(year, month, day) < new Date(new Date().setHours(0,0,0,0))
+          const isPast = new Date(year, month, day) < new Date(new Date().setHours(0, 0, 0, 0))
           return (
             <button key={day} disabled={isPast} onClick={() => setSelDay(isSel ? null : day)}
-              className={`aspect-square flex flex-col items-center justify-center rounded-md text-[10px] transition-all duration-150
-                ${isPast ? 'opacity-20 cursor-not-allowed' 
-                : isSel ? 'bg-gold-500/20 border border-gold-500/40 text-gold-400 scale-105'
-                : status ? 'hover:bg-white/05 text-cream/90' : 'hover:bg-white/05 text-cream/60'}`}>
+              className={`aspect-square flex flex-col items-center justify-center rounded-md text-[11px] transition-all duration-150
+                ${isPast ? 'opacity-20 cursor-not-allowed'
+                  : isSel ? 'bg-gold-500/20 border border-gold-500/40 text-gold-400 scale-105'
+                    : status ? 'hover:bg-white/05 text-cream/90' : 'hover:bg-white/05 text-cream/60'}`}>
               <span>{day}</span>
-              {status && <div className="w-1 h-1 rounded-full mt-0.5" style={{background: dotColor[status]}} />}
+              {status && <div className="w-1 h-1 rounded-full mt-0.5" style={{ background: dotColor[status] }} />}
             </button>
           )
         })}
@@ -69,8 +69,8 @@ function VenueAvailabilityWidget({ venueId, venueName }) {
 
       {selDay && (
         <div className="mt-3 p-2.5 rounded-xl glass-light border border-white/05 flex items-center gap-2">
-          <div className="w-2 h-2 rounded-full shrink-0" style={{background: bookedMap[selDay] ? dotColor[bookedMap[selDay]] : '#34d399'}} />
-          <span className="text-cream/90 text-[10px] font-sans leading-tight">
+          <div className="w-2 h-2 rounded-full shrink-0" style={{ background: bookedMap[selDay] ? dotColor[bookedMap[selDay]] : '#34d399' }} />
+          <span className="text-cream/90 text-[11px] font-sans leading-tight">
             {monthNames[month]} {selDay} — {bookedMap[selDay] ? label[bookedMap[selDay]] : <span className="text-emerald-400 font-semibold">Available!</span>}
           </span>
         </div>
@@ -137,9 +137,9 @@ export default function VenueDetail() {
       <div className="relative h-[70vh] w-full overflow-hidden">
         {/* Main Background with Curtain Reveal */}
         <div className="absolute inset-0 z-0" data-reveal="img-slide">
-          <img 
-            src={allImages[activeImg]} 
-            alt={venue.name} 
+          <img
+            src={allImages[activeImg]}
+            alt={venue.name}
             className="w-full h-full object-cover scale-105"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-navy-950 via-navy-950/20 to-transparent" />
@@ -151,17 +151,17 @@ export default function VenueDetail() {
             <Link to="/venues" className="inline-flex items-center gap-2 text-gold-400/60 hover:text-gold-400 transition-all text-sm tracking-widest uppercase mb-8" data-reveal="fade">
               <ChevronLeft size={16} /> Portfolio
             </Link>
-            
+
             <div className="flex flex-col md:flex-row md:items-end justify-between gap-8">
               <div data-reveal="up">
                 <div className="flex items-center gap-3 mb-4">
-                  <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans font-medium px-3 py-1 glass rounded-full border border-gold-500/20">
+                  <span className="text-gold-400 text-[11px] tracking-[0.4em] uppercase font-sans font-medium px-3 py-1 glass rounded-full border border-gold-500/20">
                     {venue.type}
                   </span>
                   <div className="flex items-center gap-1.5 glass rounded-full px-3 py-1 border border-white/05">
                     <Star size={12} className="text-gold-400 fill-gold-400" />
                     <span className="text-cream/90 text-[11px] font-bold">{venue.rating}</span>
-                    <span className="text-cream/60 text-[10px]">({venue.reviews} Reviews)</span>
+                    <span className="text-cream/60 text-[11px]">({venue.reviews} Reviews)</span>
                   </div>
                 </div>
                 <h1 className="font-display text-5xl md:text-7xl text-cream leading-tight mb-4">
@@ -188,20 +188,19 @@ export default function VenueDetail() {
 
       <div className="section-container -mt-10 relative z-20">
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-12">
-          
+
           {/* Left Column: Details & Gallery */}
           <div className="lg:col-span-8 space-y-16">
-            
+
             {/* Thumbnails */}
             {allImages.length > 1 && (
               <div className="flex gap-4 overflow-x-auto pb-4 no-scrollbar" data-reveal="fade">
                 {allImages.map((img, i) => (
-                  <button 
-                    key={i} 
+                  <button
+                    key={i}
                     onClick={() => setActiveImg(i)}
-                    className={`shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${
-                      i === activeImg ? 'border-gold-400 scale-105 shadow-xl shadow-gold-500/10' : 'border-transparent grayscale hover:grayscale-0 opacity-40 hover:opacity-100'
-                    }`}
+                    className={`shrink-0 w-24 h-24 rounded-2xl overflow-hidden border-2 transition-all duration-300 ${i === activeImg ? 'border-gold-400 scale-105 shadow-xl shadow-gold-500/10' : 'border-transparent grayscale hover:grayscale-0 opacity-40 hover:opacity-100'
+                      }`}
                   >
                     <img src={img} alt="" className="w-full h-full object-cover" />
                   </button>
@@ -232,7 +231,7 @@ export default function VenueDetail() {
                     <item.icon size={24} className="text-gold-400" />
                   </div>
                   <div className="font-display text-4xl text-cream mb-1">{item.value}</div>
-                  <div className="text-cream/50 text-[10px] tracking-[0.2em] uppercase mb-4">{item.label}</div>
+                  <div className="text-cream/50 text-[11px] tracking-[0.2em] uppercase mb-4">{item.label}</div>
                   <div className="section-line mb-4 opacity-20" />
                   <div className="text-gold-500/40 text-[9px] tracking-widest uppercase">{item.sub}</div>
                 </div>
@@ -263,11 +262,11 @@ export default function VenueDetail() {
           <div className="lg:col-span-4" data-reveal="fade" data-delay="3">
             <div className="sticky top-28 glass rounded-[32px] p-8 border border-gold-500/20 gold-glow overflow-hidden">
               <div className="orb w-48 h-48 bg-gold-500/05 -top-10 -right-10" />
-              
+
               <div className="relative z-10">
                 <div className="flex items-center justify-between mb-8">
                   <div className="flex flex-col">
-                    <span className="text-gold-400/50 text-[10px] tracking-widest uppercase mb-1">Elite Booking Rate</span>
+                    <span className="text-gold-400/50 text-[11px] tracking-widest uppercase mb-1">Elite Booking Rate</span>
                     <div className="flex items-baseline gap-2">
                       <span className="animated-gradient-text font-display text-5xl font-bold">₹{(venue.price / 1000).toFixed(0)}K</span>
                       <span className="text-cream/70 text-base">{venue.priceUnit}</span>
@@ -282,15 +281,15 @@ export default function VenueDetail() {
 
                 <div className="space-y-6 mb-10">
                   <div className="group">
-                    <label className="text-gold-500/70 text-[10px] tracking-[0.3em] uppercase mb-2.5 block px-1">Engagement Date</label>
+                    <label className="text-gold-500/70 text-[11px] tracking-[0.3em] uppercase mb-2.5 block px-1">Engagement Date</label>
                     <div className="relative">
                       <Calendar size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold-500/40" />
                       <input type="date" className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
                     </div>
                   </div>
-                  
+
                   <div className="group">
-                    <label className="text-gold-500/70 text-[10px] tracking-[0.3em] uppercase mb-2.5 block px-1">Presence Size</label>
+                    <label className="text-gold-500/70 text-[11px] tracking-[0.3em] uppercase mb-2.5 block px-1">Presence Size</label>
                     <div className="relative">
                       <Users size={16} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold-500/40" />
                       <input type="number" placeholder={`Select up to ${venue.capacity}`} className="w-full pl-12 pr-4 py-4 bg-navy-950/50 border border-gold-500/10 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all" />
@@ -306,7 +305,7 @@ export default function VenueDetail() {
                 <div className="mt-8 pt-8 border-t border-gold-500/10">
                   <div className="flex items-center gap-2 mb-4">
                     <Calendar size={13} className="text-gold-400/60" />
-                    <span className="text-gold-400/60 text-[10px] tracking-[0.3em] uppercase font-sans">Live Availability</span>
+                    <span className="text-gold-400/60 text-[11px] tracking-[0.3em] uppercase font-sans">Live Availability</span>
                   </div>
                   <VenueAvailabilityWidget venueId={venue.id} venueName={venue.name} />
                 </div>
@@ -352,11 +351,11 @@ export default function VenueDetail() {
                 <img src={v.image} alt={v.name} className="w-full h-full object-cover group-hover:scale-110 transition-transform duration-700" />
                 <div className="absolute inset-0 bg-gradient-to-t from-navy-950 to-transparent opacity-60" />
                 <div className="absolute top-4 right-4 glass rounded-full px-3 py-1 border border-white/10">
-                  <span className="text-gold-400 font-bold text-sm">₹{(v.price/1000).toFixed(0)}K</span>
+                  <span className="text-gold-400 font-bold text-sm">₹{(v.price / 1000).toFixed(0)}K</span>
                 </div>
               </div>
               <div className="p-6">
-                <div className="text-gold-500/50 text-[10px] tracking-[0.2em] uppercase mb-2 font-sans">{v.type}</div>
+                <div className="text-gold-500/50 text-[11px] tracking-[0.2em] uppercase mb-2 font-sans">{v.type}</div>
                 <div className="font-display text-2xl text-cream group-hover:text-gold-400 transition-colors">{v.name}</div>
                 <div className="mt-4 flex items-center justify-between">
                   <div className="flex items-center gap-2 text-cream/60 text-sm">

@@ -38,8 +38,8 @@ export default function Navbar() {
             <div className="absolute inset-0 rounded-lg bg-gold-gradient opacity-0 group-hover:opacity-60 blur-md transition-opacity duration-300" />
           </div>
           <div>
-            <span className="font-display text-2xl text-cream tracking-wide">ExpoInn</span>
-            <span className="block text-gold-500 text-[10px] tracking-[0.25em] uppercase font-sans font-light leading-none">
+            <span className="font-display text-[25px] text-cream tracking-wide">ExpoInn</span>
+            <span className="block text-gold-500 text-[12px] tracking-[0.25em] uppercase font-sans font-light leading-none">
               Smart Booking Engine
             </span>
           </div>

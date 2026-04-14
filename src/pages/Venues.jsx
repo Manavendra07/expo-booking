@@ -56,14 +56,14 @@ export default function Venues() {
   return (
     <div className="min-h-screen bg-navy-900 pb-20">
       <ScrollProgressBar />
-      
+
       {/* Immersive Header */}
       <div className="relative h-[60vh] flex items-center justify-center overflow-hidden">
         {/* Parallax Background */}
         <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80" 
-            alt="Venues Hero" 
+          <img
+            src="https://images.unsplash.com/photo-1511578314322-379afb476865?w=1600&q=80"
+            alt="Venues Hero"
             className="w-full h-full object-cover opacity-40 scale-105"
             style={{ filter: 'brightness(0.6)' }}
           />
@@ -73,23 +73,23 @@ export default function Venues() {
         <div className="section-container relative z-10 text-center">
           <div className="flex items-center justify-center gap-3 mb-6" data-reveal="fade">
             <div className="h-px w-12 bg-gold-500/50" />
-            <span className="text-gold-400 text-sm tracking-[0.4em] uppercase font-sans font-medium">World Class Venues</span>
+            <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans font-medium">World Class Venues</span>
             <div className="h-px w-12 bg-gold-500/50" />
           </div>
-          
+
           <h1 className="font-display text-5xl md:text-7xl text-cream mb-8 leading-tight" data-reveal="up">
             Find Your <em className="animated-gradient-text not-italic font-medium">Statement</em> Venue
           </h1>
-          
+
           <div className="flex flex-col md:flex-row items-center justify-center gap-4" data-reveal="up" data-delay="2">
             <div className="relative w-full max-w-md">
               <Search size={18} className="absolute left-4 top-1/2 -translate-y-1/2 text-gold-500/50" />
-              <input 
-                type="text" 
-                placeholder="Search by name, type, or tag..." 
+              <input
+                type="text"
+                placeholder="Search by name, type, or tag..."
                 value={search}
                 onChange={e => setSearch(e.target.value)}
-                className="w-full pl-12 pr-6 py-4 bg-navy-950/50 border border-gold-500/20 rounded-full text-cream placeholder:text-cream/50 backdrop-blur-md focus:border-gold-400/50 transition-all outline-none"
+                className="w-full px-6 py-4 bg-navy-950/50 border border-gold-500/20 rounded-full text-cream placeholder:text-cream/60 backdrop-blur-md focus:border-gold-400/50 transition-all outline-none"
               />
             </div>
           </div>
@@ -104,18 +104,17 @@ export default function Venues() {
       <div className="sticky top-16 z-40 -mt-10">
         <div className="section-container">
           <div className="glass rounded-2xl p-4 md:p-6 flex flex-col lg:flex-row gap-6 items-center justify-between border border-gold-500/10 shadow-2xl">
-            
+
             {/* Category Pills */}
             <div className="flex gap-2.5 overflow-x-auto pb-2 lg:pb-0 no-scrollbar w-full lg:w-auto">
               {venueTypes.map((type, i) => (
-                <button 
-                  key={type} 
+                <button
+                  key={type}
                   onClick={() => setSelectedType(type)}
-                  className={`px-5 py-2 rounded-full text-[11px] font-sans tracking-widest uppercase transition-all whitespace-nowrap border ${
-                    selectedType === type
+                  className={`px-5 py-2.5 rounded-full text-[13px] font-sans tracking-widest uppercase transition-all whitespace-nowrap border ${selectedType === type
                       ? 'bg-gold-gradient text-navy-950 border-gold-400 font-bold shadow-lg shadow-gold-500/20'
                       : 'bg-white/05 text-cream/70 border-white/05 hover:border-gold-500/30 hover:text-cream'
-                  }`}
+                    }`}
                 >
                   {type}
                 </button>
@@ -123,18 +122,17 @@ export default function Venues() {
             </div>
 
             <div className="flex items-center gap-4 w-full lg:w-auto justify-end">
-              <button 
+              <button
                 onClick={() => setShowFilters(!showFilters)}
-                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-sans tracking-widest uppercase border transition-all ${
-                  showFilters ? 'bg-gold-500/10 border-gold-400 text-gold-400' : 'bg-white/05 border-white/10 text-cream/90'
-                }`}
+                className={`flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-sans tracking-widest uppercase border transition-all ${showFilters ? 'bg-gold-500/10 border-gold-400 text-gold-400' : 'bg-white/05 border-white/10 text-cream/90'
+                  }`}
               >
                 <Filter size={14} /> Advanced Filters
               </button>
-              
+
               <div className="h-8 w-px bg-gold-500/10 hidden md:block" />
-              
-              <p className="text-cream/60 text-sm font-sans tracking-widest uppercase hidden md:block">
+
+              <p className="text-cream/70 text-sm font-sans tracking-widest uppercase hidden md:block">
                 <span className="text-gold-400 font-bold">{filtered.length}</span> Results
               </p>
             </div>
@@ -145,17 +143,17 @@ export default function Venues() {
             <div className="mt-4 glass rounded-2xl p-6 border border-gold-500/10 animate-slide-up">
               <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <div>
-                  <label className="text-gold-500/50 text-[10px] tracking-[0.3em] uppercase mb-3 block">Minimum Capacity</label>
-                  <input 
-                    type="number" 
-                    placeholder="e.g. 500 Guests" 
+                  <label className="text-gold-500/80 text-[12px] tracking-[0.3em] uppercase mb-3 block">Minimum Capacity</label>
+                  <input
+                    type="number"
+                    placeholder="e.g. 500 Guests"
                     value={capacity}
                     onChange={e => setCapacity(e.target.value)}
                     className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all"
                   />
                 </div>
                 <div>
-                  <label className="text-gold-500/50 text-[10px] tracking-[0.3em] uppercase mb-3 block">Sort By</label>
+                  <label className="text-gold-500/80 text-[12px] tracking-[0.3em] uppercase mb-3 block">Sort By</label>
                   <select className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all appearance-none cursor-pointer">
                     <option>Recommended</option>
                     <option>Capacity: High to Low</option>
@@ -165,7 +163,7 @@ export default function Venues() {
                 </div>
                 <div className="flex items-end gap-4">
                   {(search || selectedType !== 'All' || capacity) && (
-                    <button 
+                    <button
                       onClick={() => { setSearch(''); setSelectedType('All'); setCapacity('') }}
                       className="flex items-center gap-2 text-red-400/70 hover:text-red-400 text-sm transition-colors mb-4"
                     >
@@ -188,7 +186,7 @@ export default function Venues() {
             </div>
             <h3 className="font-display text-4xl text-cream mb-4">No venues match your vision</h3>
             <p className="text-cream/70 text-lg max-w-md mx-auto">Try refining your search or explore our most popular categories.</p>
-            <button 
+            <button
               onClick={() => { setSearch(''); setSelectedType('All'); setCapacity('') }}
               className="btn-gold px-8 py-3 rounded-full text-sm mt-10"
             >

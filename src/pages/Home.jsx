@@ -154,7 +154,7 @@ function HeroSection() {
           {/* Label */}
           <div className="flex items-center gap-3 mb-7 animate-slide-up">
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.42em] uppercase font-sans">
+            <span className="text-gold-400 text-sm tracking-[0.35em] uppercase font-sans">
               India's Premier Smart Booking Engine
             </span>
           </div>
@@ -181,15 +181,15 @@ function HeroSection() {
             className="glass rounded-2xl p-5 mb-8 max-w-xl border border-gold-500/20 animate-slide-up"
             style={{ animationDelay: '0.45s' }}
           >
-            <p className="text-gold-400/60 text-[10px] tracking-[0.3em] uppercase font-sans mb-4">Find Your Perfect Venue</p>
+            <p className="text-gold-400/60 text-[12px] tracking-[0.3em] uppercase font-sans mb-4">Find Your Perfect Venue</p>
             <div className="grid grid-cols-3 gap-3 mb-4">
               <div className="col-span-3 sm:col-span-1">
-                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Date</label>
+                <label className="text-cream/80 text-[12px] tracking-widest uppercase mb-1.5 block font-sans">Event Date</label>
                 <input type="date" value={search.date} onChange={(e) => setSearch((p) => ({ ...p, date: e.target.value }))}
                   className="w-full px-3 py-2.5 text-base rounded-lg" />
               </div>
               <div>
-                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Event Type</label>
+                <label className="text-cream/80 text-[12px] tracking-widest uppercase mb-1.5 block font-sans">Event Type</label>
                 <select value={search.type} onChange={(e) => setSearch((p) => ({ ...p, type: e.target.value }))}
                   className="w-full px-3 py-2.5 text-base rounded-lg appearance-none">
                   <option value="">All Types</option>
@@ -197,7 +197,7 @@ function HeroSection() {
                 </select>
               </div>
               <div>
-                <label className="text-cream/60 text-[10px] tracking-widest uppercase mb-1.5 block font-sans">Guests</label>
+                <label className="text-cream/80 text-[12px] tracking-widest uppercase mb-1.5 block font-sans">Guests</label>
                 <input type="number" placeholder="No. of guests" value={search.guests}
                   onChange={(e) => setSearch((p) => ({ ...p, guests: e.target.value }))}
                   className="w-full px-3 py-2.5 text-base rounded-lg" />
@@ -241,11 +241,11 @@ function HeroSection() {
               <div className="p-4">
                 <div className="flex items-center gap-1.5 mb-1.5">
                   <div className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-                  <span className="text-emerald-400 text-[10px] font-sans">{card.status}</span>
+                  <span className="text-emerald-400 text-[11px] font-sans">{card.status}</span>
                 </div>
                 <div className="text-cream text-base font-sans font-semibold">{card.name}</div>
                 <div className="flex items-center justify-between mt-1">
-                  <span className="text-cream/70 text-[10px]"><Users size={9} className="inline mr-0.5" />{card.guests}</span>
+                  <span className="text-cream/70 text-[11px]"><Users size={9} className="inline mr-0.5" />{card.guests}</span>
                   <span className="text-gold-400 text-sm font-display">{card.price}</span>
                 </div>
               </div>
@@ -260,7 +260,7 @@ function HeroSection() {
               </div>
               <div>
                 <div className="text-cream font-sans font-bold text-base leading-none">Real-Time</div>
-                <div className="text-cream/65 text-[10px] font-sans mt-0.5">Availability Checked Live</div>
+                <div className="text-cream/65 text-[11px] font-sans mt-0.5">Availability Checked Live</div>
               </div>
             </div>
           </div>
@@ -306,7 +306,7 @@ function StatsBar() {
             <div key={i} className="flex flex-col items-center py-4 px-8" data-reveal data-delay={String(i + 1)}>
               <CountUp value={s.value} suffix={s.suffix} />
               <p className="text-cream/85 text-base font-sans tracking-wider text-center mt-2 font-medium">{s.label}</p>
-              <p className="text-gold-500/40 text-[10px] font-sans tracking-[0.2em] uppercase text-center mt-1">{s.sub}</p>
+              <p className="text-gold-500/80 text-[11px] font-sans tracking-[0.2em] uppercase text-center mt-1">{s.sub}</p>
             </div>
           ))}
         </div>
@@ -331,7 +331,7 @@ function TrustedBySection() {
       <div className="absolute inset-0 bg-gradient-to-r from-[#070d1a] via-transparent to-[#070d1a] z-10 pointer-events-none" />
 
       <div className="mb-6 text-center">
-        <span className="text-gold-500/35 text-[10px] tracking-[0.45em] uppercase font-sans">
+        <span className="text-gold-500/85 text-[16px] tracking-[0.40em] uppercase font-sans">
           Trusted by India's premier institutions
         </span>
       </div>
@@ -343,8 +343,8 @@ function TrustedBySection() {
               key={i}
               className="flex items-center gap-3 px-8 shrink-0"
             >
-              <div className="w-1.5 h-1.5 rounded-full bg-gold-500/30 shrink-0" />
-              <span className="text-cream/55 text-base font-sans font-medium tracking-wide whitespace-nowrap hover:text-cream/85 transition-colors cursor-default">
+              <div className="w-1.5 h-1.5 rounded-full bg-gold-500/80 shrink-0" />
+              <span className="text-cream/85 text-base font-sans font-medium tracking-wide whitespace-nowrap hover:text-cream/85 transition-colors cursor-default">
                 {brand}
               </span>
             </div>
@@ -400,7 +400,7 @@ function HowToBookSection() {
         <div className="text-center mb-10">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">How It Works</span>
+            <span className="text-gold-400 text-[11px] tracking-[0.4em] uppercase font-sans">How It Works</span>
             <div className="h-px w-12 bg-gold-400" />
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
@@ -503,7 +503,7 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
         style={{ transition: 'transform 0.15s ease, box-shadow 0.3s ease', transformStyle: 'preserve-3d' }}
         data-reveal data-delay={String(delay)}
       >
-        <div className="overflow-hidden h-full" 
+        <div className="overflow-hidden h-full"
         // style={{ height: large ? '440px' : '300px' }}
         >
           <img
@@ -526,7 +526,7 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
         {large && (
           <div className="absolute top-4 left-4 flex gap-2">
             {venue.tags.slice(0, 2).map((tag) => (
-              <span key={tag} className="glass text-gold-400/80 text-[10px] px-2.5 py-1 rounded-full border border-gold-500/20 font-sans">
+              <span key={tag} className="glass text-gold-400/80 text-[11px] px-2.5 py-1 rounded-full border border-gold-500/20 font-sans">
                 {tag}
               </span>
             ))}
@@ -545,7 +545,7 @@ function TiltVenueCard({ venue, delay = 1, large = false }) {
             </div>
             <div className="text-right ml-4 shrink-0">
               <div className="text-gold-400 font-display text-xl">₹{venue.price / 1000}K</div>
-              <div className="text-cream/60 text-[10px] font-sans">/day</div>
+              <div className="text-cream/60 text-[11px] font-sans">/day</div>
             </div>
           </div>
 
@@ -574,7 +574,7 @@ function VenueShowcase() {
           <div>
             <div className="flex items-center gap-3 mb-5" data-reveal>
               <div className="h-px w-12 bg-gold-400" />
-              <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Featured Spaces</span>
+              <span className="text-gold-400 text-[11px] tracking-[0.4em] uppercase font-sans">Featured Spaces</span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
               Our Signature <em className="gold-shimmer not-italic">Venues</em>
@@ -646,13 +646,13 @@ function VenueCategories() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Venue Types</span>
+            <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Venue Types</span>
             <div className="h-px w-12 bg-gold-400" />
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
             Find the <em className="gold-shimmer not-italic">Perfect Space</em>
           </h2>
-          <p className="text-cream/70 text-lg mt-4 max-w-lg mx-auto font-sans font-light" data-reveal data-delay="2">
+          <p className="text-cream/80 text-lg mt-4 max-w-lg mx-auto font-sans font-light" data-reveal data-delay="2">
             Every occasion deserves the right venue. Browse by category to find yours.
           </p>
         </div>
@@ -670,7 +670,7 @@ function VenueCategories() {
                 <div className="category-card-overlay" />
                 <div className="category-card-content">
                   <div className="category-card-tag mb-2">
-                    <span className="glass text-gold-400/80 text-[10px] px-2.5 py-1 rounded-full border border-gold-500/20 font-sans">
+                    <span className="glass text-gold-400/80 text-[11px] px-2.5 py-1 rounded-full border border-gold-500/20 font-sans">
                       {cat.sub}
                     </span>
                   </div>
@@ -721,7 +721,7 @@ function ImmersiveSpotlight() {
         <div className="max-w-2xl">
           <div className="flex items-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Spotlight Venue</span>
+            <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Spotlight Venue</span>
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-cream mb-4" data-reveal data-delay="1">
             The Grand<br /><em className="gold-shimmer not-italic">Convention Centre</em>
@@ -742,7 +742,7 @@ function ImmersiveSpotlight() {
                 </div>
                 <div>
                   <div className="text-cream font-display text-xl leading-none">{val}</div>
-                  <div className="text-cream/65 text-sm font-sans">{label}</div>
+                  <div className="text-cream/70 text-sm font-sans">{label}</div>
                 </div>
               </div>
             ))}
@@ -794,7 +794,7 @@ function WhyChooseUs() {
         <div className="text-center mb-16">
           <div className="flex items-center justify-center gap-3 mb-5" data-reveal>
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Why ExpoInn</span>
+            <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Why ExpoInn</span>
             <div className="h-px w-12 bg-gold-400" />
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-cream" data-reveal data-delay="1">
@@ -852,7 +852,7 @@ function AvailabilityTeaser() {
           <div data-reveal="left">
             <div className="flex items-center gap-3 mb-6">
               <div className="h-px w-12 bg-gold-400" />
-              <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Live Availability</span>
+              <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Live Availability</span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl text-cream mb-6">
               Check Dates<br /><em className="gold-shimmer not-italic">Instantly</em>
@@ -876,7 +876,7 @@ function AvailabilityTeaser() {
             <div className="flex items-center justify-between mb-6">
               <div>
                 <h3 className="font-display text-2xl text-cream">April 2026</h3>
-                <p className="text-gold-400/50 text-[10px] font-sans tracking-wide mt-0.5">Live Preview</p>
+                <p className="text-gold-400/50 text-[11px] font-sans tracking-wide mt-0.5">Live Preview</p>
               </div>
               <div className="flex gap-2">
                 {[ChevronLeft, ChevronRight].map((Icon, i) => (
@@ -914,7 +914,7 @@ function AvailabilityTeaser() {
               {[['Confirmed', 'emerald'], ['Tentative', 'amber'], ['Open', 'slate']].map(([label, clr]) => (
                 <div key={label} className="flex items-center gap-1.5">
                   <div className={`w-2 h-2 rounded-full bg-${clr}-400`} />
-                  <span className="text-cream/60 text-[10px] font-sans">{label}</span>
+                  <span className="text-cream/60 text-[11px] font-sans">{label}</span>
                 </div>
               ))}
             </div>
@@ -924,7 +924,7 @@ function AvailabilityTeaser() {
                 <div className={`w-2.5 h-2.5 rounded-full ${statusDot[events[selected]]} shrink-0`} />
                 <div>
                   <span className="text-cream text-base font-sans font-medium">April {selected}, 2026</span>
-                  <span className={`ml-2 text-[10px] px-2 py-0.5 rounded-full capitalize font-sans
+                  <span className={`ml-2 text-[11px] px-2 py-0.5 rounded-full capitalize font-sans
                     ${events[selected] === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400' : 'bg-amber-400/15 text-amber-400'}`}>
                     {events[selected]}
                   </span>
@@ -968,7 +968,7 @@ function TestimonialsSection() {
         <div className="text-center mb-14" data-reveal>
           <div className="flex items-center justify-center gap-3 mb-5">
             <div className="h-px w-12 bg-gold-400" />
-            <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Client Stories</span>
+            <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Client Stories</span>
             <div className="h-px w-12 bg-gold-400" />
           </div>
           <h2 className="font-display text-5xl md:text-6xl text-cream">
@@ -1047,7 +1047,7 @@ function CTABanner() {
           <div className="max-w-2xl">
             <div className="flex items-center gap-3 mb-5">
               <div className="h-px w-12 bg-gold-400" />
-              <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Get Started Today</span>
+              <span className="text-gold-400 text-[14px] tracking-[0.4em] uppercase font-sans">Get Started Today</span>
             </div>
             <h2 className="font-display text-5xl md:text-6xl text-cream mb-5 leading-tight">
               Ready to Host Your<br />

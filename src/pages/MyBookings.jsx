@@ -53,17 +53,17 @@ function BookingCard({ booking, idx }) {
             <Calendar size={20} className="text-gold-400/60" />
           </div>
           <div>
-            <div className="font-mono text-gold-400/50 text-[10px] tracking-widest uppercase mb-1">{booking.id}</div>
+            <div className="font-mono text-gold-400/80 text-[12px] tracking-widest uppercase mb-1">{booking.id}</div>
             <div className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-full border ${status.bg} ${status.border}`}>
               <StatusIcon size={11} className={status.color} />
-              <span className={`text-[10px] font-sans font-bold uppercase tracking-wider ${status.color}`}>{status.label}</span>
+              <span className={`text-[11px] font-sans font-bold uppercase tracking-wider ${status.color}`}>{status.label}</span>
             </div>
           </div>
         </div>
 
         {/* Event Info */}
         <div className="flex-1 min-w-0">
-          <div className="text-gold-500/50 text-[10px] tracking-[0.2em] uppercase mb-1">{booking.eventType} · {booking.company}</div>
+          <div className="text-gold-500/80 text-[12px] tracking-[0.2em] uppercase mb-1">{booking.eventType} · {booking.company}</div>
           <h3 className="font-display text-xl text-cream group-hover:text-gold-400 transition-colors truncate">{booking.eventName || booking.venue}</h3>
           <div className="text-cream/70 text-sm mt-0.5 flex items-center gap-1"><Building2 size={10} />{booking.venue} — {booking.hall}</div>
         </div>
@@ -71,15 +71,15 @@ function BookingCard({ booking, idx }) {
         {/* Metadata */}
         <div className="grid grid-cols-3 gap-4 shrink-0 text-center lg:text-left">
           <div className="px-3 border-l border-white/05">
-            <div className="text-cream/50 text-[9px] tracking-[0.2em] uppercase mb-1">Schedule</div>
+            <div className="text-cream/70 text-[11px] tracking-[0.2em] uppercase mb-1">Schedule</div>
             <div className="text-cream text-sm font-bold">{new Date(booking.eventDate).toLocaleDateString('en-IN', { day: 'numeric', month: 'short' })}</div>
           </div>
           <div className="px-3 border-l border-white/05">
-            <div className="text-cream/50 text-[9px] tracking-[0.2em] uppercase mb-1">Guests</div>
+            <div className="text-cream/70 text-[11px] tracking-[0.2em] uppercase mb-1">Guests</div>
             <div className="text-cream text-sm font-bold">{booking.guests?.toLocaleString()}</div>
           </div>
           <div className="px-3 border-l border-white/05">
-            <div className="text-cream/50 text-[9px] tracking-[0.2em] uppercase mb-1">Value</div>
+            <div className="text-cream/70 text-[11px] tracking-[0.2em] uppercase mb-1">Value</div>
             <div className="text-gold-400 text-sm font-bold">₹{(booking.amount / 100000).toFixed(1)}L</div>
           </div>
         </div>
@@ -111,15 +111,15 @@ function BookingCard({ booking, idx }) {
           </div>
           <div className="flex items-center gap-3 mb-6 flex-wrap">
             {booking.primePeriod && (
-              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[10px] font-bold border ${booking.primePeriod.includes('High') ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'}`}>
+              <span className={`inline-flex items-center gap-1.5 px-3 py-1 rounded-full text-[11px] font-bold border ${booking.primePeriod.includes('High') ? 'bg-amber-500/10 border-amber-500/20 text-amber-400' : 'bg-emerald-500/10 border-emerald-500/20 text-emerald-400'}`}>
                 {booking.primePeriod.includes('High') ? '🔥' : '🌿'} {booking.primePeriod}
               </span>
             )}
             {booking.industry && (
-              <span className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-[10px] font-medium">{booking.industry}</span>
+              <span className="px-3 py-1 rounded-full bg-gold-500/10 border border-gold-500/20 text-gold-400 text-[11px] font-medium">{booking.industry}</span>
             )}
             {(booking.sector || []).map(s => (
-              <span key={s} className="px-2.5 py-1 rounded-full bg-white/05 border border-white/10 text-cream/70 text-[10px]">{s}</span>
+              <span key={s} className="px-2.5 py-1 rounded-full bg-white/05 border border-white/10 text-cream/70 text-[11px]">{s}</span>
             ))}
           </div>
           <div className="flex flex-wrap items-center justify-between gap-4">
@@ -134,7 +134,7 @@ function BookingCard({ booking, idx }) {
               </button>
             </div>
             {booking.status !== 'cancelled' && booking.status !== 'completed' && (
-              <button className="px-5 py-2.5 rounded-xl text-[10px] font-bold tracking-widest uppercase border border-red-500/10 text-red-400/40 hover:text-red-400 hover:border-red-500/30 transition-all flex items-center gap-2">
+              <button className="px-5 py-2.5 rounded-xl text-[11px] font-bold tracking-widest uppercase border border-red-500/10 text-red-400/40 hover:text-red-400 hover:border-red-500/30 transition-all flex items-center gap-2">
                 <Trash2 size={12} /> Withdraw
               </button>
             )}
@@ -152,7 +152,7 @@ function CalendarView({ bookings }) {
   const [month, setMonth] = useState(now.getMonth())
   const [popup, setPopup] = useState(null)
 
-  const monthNames = ['January','February','March','April','May','June','July','August','September','October','November','December']
+  const monthNames = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']
   const firstDay = new Date(year, month, 1).getDay()
   const daysInMonth = new Date(year, month + 1, 0).getDate()
 
@@ -183,13 +183,13 @@ function CalendarView({ bookings }) {
       <div className="flex items-center justify-between p-6 border-b border-white/05">
         <div>
           <h3 className="font-display text-2xl text-cream">{monthNames[month]} {year}</h3>
-          <p className="text-gold-400/40 text-[10px] tracking-widest uppercase mt-0.5">Booking Calendar</p>
+          <p className="text-gold-400/40 text-[11px] tracking-widest uppercase mt-0.5">Booking Calendar</p>
         </div>
         <div className="flex gap-2">
           <button onClick={() => changeMonth(-1)} className="w-9 h-9 glass rounded-xl flex items-center justify-center text-cream/70 hover:text-gold-400 transition-colors border border-white/05">
             <ChevronLeft size={16} />
           </button>
-          <button onClick={() => { setMonth(now.getMonth()); setYear(now.getFullYear()) }} className="px-4 h-9 glass rounded-xl text-[10px] text-cream/70 hover:text-gold-400 font-sans uppercase tracking-widest transition-colors border border-white/05">Today</button>
+          <button onClick={() => { setMonth(now.getMonth()); setYear(now.getFullYear()) }} className="px-4 h-9 glass rounded-xl text-[11px] text-cream/70 hover:text-gold-400 font-sans uppercase tracking-widest transition-colors border border-white/05">Today</button>
           <button onClick={() => changeMonth(1)} className="w-9 h-9 glass rounded-xl flex items-center justify-center text-cream/70 hover:text-gold-400 transition-colors border border-white/05">
             <ChevronRight size={16} />
           </button>
@@ -199,23 +199,22 @@ function CalendarView({ bookings }) {
       <div className="p-6">
         {/* Day headers */}
         <div className="grid grid-cols-7 mb-2">
-          {['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].map(d => (
-            <div key={d} className="text-center text-cream/50 text-[10px] font-sans py-2 tracking-widest uppercase">{d}</div>
+          {['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'].map(d => (
+            <div key={d} className="text-center text-cream/50 text-[11px] font-sans py-2 tracking-widest uppercase">{d}</div>
           ))}
         </div>
 
         {/* Days grid */}
         <div className="grid grid-cols-7 gap-1">
-          {Array.from({length: firstDay}).map((_,i) => <div key={i} />)}
-          {Array.from({length: daysInMonth}, (_,i) => i+1).map(day => {
+          {Array.from({ length: firstDay }).map((_, i) => <div key={i} />)}
+          {Array.from({ length: daysInMonth }, (_, i) => i + 1).map(day => {
             const dayBookings = dayMap[day] || []
             const isToday = year === now.getFullYear() && month === now.getMonth() && day === now.getDate()
             const isSelected = popup === day
             return (
               <button key={day} onClick={() => setPopup(isSelected ? null : day)}
-                className={`relative min-h-[52px] flex flex-col items-center pt-1 pb-1 px-1 rounded-xl text-sm font-sans transition-all duration-200 ${
-                  isSelected ? 'bg-gold-500/15 border border-gold-500/30' : isToday ? 'bg-white/08 border border-white/10' : dayBookings.length > 0 ? 'hover:bg-white/05 border border-transparent' : 'border border-transparent hover:bg-white/03'
-                }`}>
+                className={`relative min-h-[52px] flex flex-col items-center pt-1 pb-1 px-1 rounded-xl text-sm font-sans transition-all duration-200 ${isSelected ? 'bg-gold-500/15 border border-gold-500/30' : isToday ? 'bg-white/08 border border-white/10' : dayBookings.length > 0 ? 'hover:bg-white/05 border border-transparent' : 'border border-transparent hover:bg-white/03'
+                  }`}>
                 <span className={`${isToday ? 'text-gold-400 font-bold' : dayBookings.length > 0 ? 'text-cream' : 'text-cream/60'}`}>{day}</span>
                 <div className="flex flex-wrap justify-center gap-0.5 mt-1">
                   {dayBookings.slice(0, 3).map((b, i) => (
@@ -233,7 +232,7 @@ function CalendarView({ bookings }) {
           <div className="mt-6 space-y-3 border-t border-white/05 pt-5">
             <div className="flex items-center gap-2 mb-3">
               <div className="h-px w-6 bg-gold-400" />
-              <span className="text-gold-400 text-[10px] tracking-[0.3em] uppercase font-sans">{monthNames[month]} {popup} — {dayMap[popup].length} Booking{dayMap[popup].length > 1 ? 's' : ''}</span>
+              <span className="text-gold-400 text-[11px] tracking-[0.3em] uppercase font-sans">{monthNames[month]} {popup} — {dayMap[popup].length} Booking{dayMap[popup].length > 1 ? 's' : ''}</span>
             </div>
             {dayMap[popup].map(b => {
               const st = statusConfig[b.status] || statusConfig.tentative
@@ -244,7 +243,7 @@ function CalendarView({ bookings }) {
                     <div className="text-cream text-base font-semibold truncate">{b.eventName || b.venue}</div>
                     <div className="text-cream/70 text-sm">{b.venue} · {b.hall}</div>
                   </div>
-                  <div className={`px-2.5 py-1 rounded-full text-[10px] font-bold border ${st.bg} ${st.border} ${st.color}`}>{st.label}</div>
+                  <div className={`px-2.5 py-1 rounded-full text-[11px] font-bold border ${st.bg} ${st.border} ${st.color}`}>{st.label}</div>
                 </div>
               )
             })}
@@ -261,8 +260,8 @@ function CalendarView({ bookings }) {
       <div className="px-6 pb-5 flex flex-wrap gap-4">
         {Object.entries(statusConfig).map(([key, val]) => (
           <div key={key} className="flex items-center gap-1.5">
-            <div className="w-2 h-2 rounded-full" style={{background: val.dot}} />
-            <span className="text-cream/60 text-[10px] font-sans">{val.label}</span>
+            <div className="w-2 h-2 rounded-full" style={{ background: val.dot }} />
+            <span className="text-cream/60 text-[11px] font-sans">{val.label}</span>
           </div>
         ))}
       </div>
@@ -337,7 +336,7 @@ export default function MyBookings() {
             <div data-reveal="left">
               <div className="flex items-center gap-3 mb-4">
                 <div className="h-px w-10 bg-gold-500/50" />
-                <span className="text-gold-400 text-[10px] tracking-[0.4em] uppercase font-sans">Personal Archive</span>
+                <span className="text-gold-400 text-[12px] tracking-[0.4em] uppercase font-sans">Personal Archive</span>
               </div>
               <h1 className="font-display text-5xl md:text-7xl text-cream leading-tight">
                 My <em className="animated-gradient-text not-italic">Bookings</em>
@@ -358,7 +357,7 @@ export default function MyBookings() {
             ].map(({ label, value, color }) => (
               <div key={label} className="glass rounded-3xl p-6 border border-white/05 hover:border-gold-500/20 transition-all text-center">
                 <div className={`font-display text-4xl font-bold ${color} mb-1`}>{value}</div>
-                <div className="text-white/20 text-[9px] tracking-widest uppercase font-sans">{label}</div>
+                <div className="text-white/70 text-[12px] tracking-widest uppercase font-sans">{label}</div>
               </div>
             ))}
           </div>
@@ -376,7 +375,7 @@ export default function MyBookings() {
               placeholder="Search by event name, organizer, or venue…"
               value={search}
               onChange={e => setSearch(e.target.value)}
-              className="w-full pl-11 pr-4 py-4 bg-navy-950/50 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all"
+              className="w-full pl-11 pr-4 py-4 bg-navy-950/60 border border-gold-500/15 rounded-2xl text-base text-cream outline-none focus:border-gold-400 transition-all"
             />
             {search && (
               <button onClick={() => setSearch('')} className="absolute right-4 top-1/2 -translate-y-1/2 text-cream/60 hover:text-cream transition-colors">
@@ -388,7 +387,7 @@ export default function MyBookings() {
             <button onClick={() => setShowAdvanced(!showAdvanced)}
               className={`flex items-center gap-2 px-5 py-4 rounded-2xl text-sm font-sans tracking-widest uppercase border transition-all ${showAdvanced || hasAdvFilters ? 'bg-gold-500/10 border-gold-400 text-gold-400' : 'glass border-white/10 text-cream/80 hover:text-cream'}`}>
               <Filter size={14} />
-              Filters {hasAdvFilters && <span className="w-5 h-5 rounded-full bg-gold-400 text-navy-950 text-[10px] font-bold flex items-center justify-center">{Object.values(advFilters).filter(v=>v).length}</span>}
+              Filters {hasAdvFilters && <span className="w-5 h-5 rounded-full bg-gold-400 text-navy-950 text-[11px] font-bold flex items-center justify-center">{Object.values(advFilters).filter(v => v).length}</span>}
             </button>
             <div className="flex glass rounded-2xl border border-white/10 overflow-hidden">
               <button onClick={() => setViewMode('list')} className={`px-4 py-2 flex items-center gap-1.5 text-sm transition-all ${viewMode === 'list' ? 'bg-gold-500/15 text-gold-400' : 'text-cream/60 hover:text-cream'}`}>
@@ -418,7 +417,7 @@ export default function MyBookings() {
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-4">
               {/* Venue filter */}
               <div className="space-y-1.5">
-                <label className="text-cream/70 text-[10px] tracking-widest uppercase flex items-center gap-1"><Building2 size={10} />Venue</label>
+                <label className="text-cream/70 text-[11px] tracking-widest uppercase flex items-center gap-1"><Building2 size={10} />Venue</label>
                 <select value={advFilters.venue} onChange={e => setAdv('venue', e.target.value)}
                   className="w-full px-3 py-2.5 bg-navy-950/50 border border-gold-500/10 rounded-xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none">
                   <option value="">All Venues</option>
@@ -427,7 +426,7 @@ export default function MyBookings() {
               </div>
               {/* Industry filter */}
               <div className="space-y-1.5">
-                <label className="text-cream/70 text-[10px] tracking-widest uppercase flex items-center gap-1"><Tag size={10} />Industry</label>
+                <label className="text-cream/70 text-[11px] tracking-widest uppercase flex items-center gap-1"><Tag size={10} />Industry</label>
                 <select value={advFilters.industry} onChange={e => setAdv('industry', e.target.value)}
                   className="w-full px-3 py-2.5 bg-navy-950/50 border border-gold-500/10 rounded-xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none">
                   <option value="">All Industries</option>
@@ -436,22 +435,22 @@ export default function MyBookings() {
               </div>
               {/* Status filter */}
               <div className="space-y-1.5">
-                <label className="text-cream/70 text-[10px] tracking-widest uppercase">Status</label>
+                <label className="text-cream/70 text-[11px] tracking-widest uppercase">Status</label>
                 <select value={advFilters.status} onChange={e => setAdv('status', e.target.value)}
                   className="w-full px-3 py-2.5 bg-navy-950/50 border border-gold-500/10 rounded-xl text-sm text-cream outline-none focus:border-gold-400 transition-all appearance-none">
                   <option value="">All Statuses</option>
-                  {['confirmed','tentative','cancelled','completed'].map(s => <option key={s} value={s} className="capitalize">{s.charAt(0).toUpperCase()+s.slice(1)}</option>)}
+                  {['confirmed', 'tentative', 'cancelled', 'completed'].map(s => <option key={s} value={s} className="capitalize">{s.charAt(0).toUpperCase() + s.slice(1)}</option>)}
                 </select>
               </div>
               {/* Date From */}
               <div className="space-y-1.5">
-                <label className="text-cream/70 text-[10px] tracking-widest uppercase flex items-center gap-1"><Calendar size={10} />Date From</label>
+                <label className="text-cream/70 text-[11px] tracking-widest uppercase flex items-center gap-1"><Calendar size={10} />Date From</label>
                 <input type="date" value={advFilters.dateFrom} onChange={e => setAdv('dateFrom', e.target.value)}
                   className="w-full px-3 py-2.5 bg-navy-950/50 border border-gold-500/10 rounded-xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
               </div>
               {/* Date To */}
               <div className="space-y-1.5">
-                <label className="text-cream/70 text-[10px] tracking-widest uppercase">Date To</label>
+                <label className="text-cream/70 text-[11px] tracking-widest uppercase">Date To</label>
                 <input type="date" value={advFilters.dateTo} onChange={e => setAdv('dateTo', e.target.value)}
                   className="w-full px-3 py-2.5 bg-navy-950/50 border border-gold-500/10 rounded-xl text-sm text-cream outline-none focus:border-gold-400 transition-all" />
               </div>
@@ -469,16 +468,15 @@ export default function MyBookings() {
               { key: 'completed', label: 'Completed', count: counts.completed },
             ].map(({ key, label, count }) => (
               <button key={key} onClick={() => setStatusFilter(key)}
-                className={`px-5 py-2.5 rounded-full text-[10px] font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${
-                  statusFilter === key
+                className={`px-5 py-2.5 rounded-full text-[12px] font-bold tracking-widest uppercase transition-all whitespace-nowrap border ${statusFilter === key
                     ? 'bg-gold-gradient text-navy-950 border-gold-400 shadow-xl shadow-gold-500/20'
                     : 'glass-light text-cream/70 border-white/05 hover:border-gold-500/30 hover:text-cream'
-                }`}>
-                {label} <span className="ml-1.5 opacity-60">({count})</span>
+                  }`}>
+                {label} <span className="ml-1.5 opacity-70">({count})</span>
               </button>
             ))}
           </div>
-          <div className="text-cream/60 text-[10px] tracking-widest uppercase">
+          <div className="text-cream/60 text-[11px] tracking-widest uppercase">
             Showing <span className="text-gold-400 font-bold">{filtered.length}</span> results
           </div>
         </div>
@@ -532,7 +530,7 @@ export default function MyBookings() {
                 Tentative bookings are held for <span className="text-amber-400 font-bold">48 hours</span> pending verification. For priority processing, contact our concierge at <span className="text-gold-400 font-bold">+91 120 696 6555</span>.
               </p>
             </div>
-            <button className="btn-outline px-8 py-3 rounded-full text-[10px] font-bold tracking-widest uppercase shrink-0 whitespace-nowrap">Contact Support</button>
+            <button className="btn-outline px-8 py-3 rounded-full text-[11px] font-bold tracking-widest uppercase shrink-0 whitespace-nowrap">Contact Support</button>
           </div>
         </div>
       </div>

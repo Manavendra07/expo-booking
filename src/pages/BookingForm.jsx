@@ -253,18 +253,18 @@ export default function BookingForm() {
               const done = step > s.id
               return (
                 <div key={s.id} className={`flex items-center gap-4 p-4 rounded-2xl transition-all duration-500 border ${
-                  active ? 'glass border-gold-500/30 gold-glow' : 'border-transparent opacity-40'
+                  active ? 'glass border-gold-500/30 gold-glow' : 'border-transparent opacity-70'
                 }`}>
                   <div className={`w-10 h-10 rounded-xl flex items-center justify-center transition-all duration-500 border ${
                     done ? 'bg-gold-gradient border-gold-400' :
                     active ? 'bg-gold-500/10 border-gold-400' :
-                    'bg-white/05 border-white/10'
+                    'bg-white/25 border-white/10'
                   }`}>
                     {done ? <CheckCircle size={18} className="text-navy-950" /> : <s.icon size={18} className={active ? 'text-gold-400' : 'text-cream/80'} />}
                   </div>
                   <div>
-                    <div className={`text-sm tracking-widest uppercase ${active ? 'text-gold-400' : 'text-cream/70'}`}>{s.label}</div>
-                    <div className={`text-sm font-semibold ${active ? 'text-cream' : 'text-cream/50'}`}>{s.desc}</div>
+                    <div className={`text-sm tracking-widest uppercase ${active ? 'text-gold-400' : 'text-cream/90'}`}>{s.label}</div>
+                    <div className={`text-sm font-semibold ${active ? 'text-cream' : 'text-white'}`}>{s.desc}</div>
                   </div>
                 </div>
               )
