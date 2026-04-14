@@ -95,11 +95,11 @@ function CountUp({ value, suffix = '', prefix = '' }) {
 /* ═══════════════════════════════════════════════════════════════════════ */
 function HeroSection() {
   const heroImages = [
-    'https://images.unsplash.com/photo-1519167758481-83f550bb49b3?w=1920&q=90',
-    'https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?w=1920&q=90',
-    'https://images.unsplash.com/photo-1501281668745-f7f57925c3b4?w=1920&q=90',
+    'https://images.unsplash.com/photo-1592494804071-faea15d93a8a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1699166877362-73cba7e56867?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1592494804071-faea15d93a8a?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
+    'https://images.unsplash.com/photo-1709809328185-ba9ee5a06121?q=80&w=1332&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',
     'https://images.unsplash.com/photo-1505373877841-8d25f7d46678?w=1920&q=90',
-    'https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=90',
   ]
   const kenClasses = ['ken-burns', 'ken-burns-2', 'ken-burns', 'ken-burns-2', 'ken-burns']
   const [heroIdx, setHeroIdx] = useState(0)
@@ -936,13 +936,13 @@ function AvailabilityTeaser() {
                     <span className="text-cream text-sm font-sans font-medium">April {selected}, 2026</span>
                   </div>
                   <span className={`text-[10px] px-2 py-0.5 rounded-full capitalize font-sans
-                    ${events[selected].status === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400 border border-emerald-400/20' : 
-                      events[selected].status === 'tentative' ? 'bg-amber-400/15 text-amber-400 border border-amber-400/20' : 
-                      'bg-slate-400/15 text-slate-400 border border-slate-400/20'}`}>
+                    ${events[selected].status === 'confirmed' ? 'bg-emerald-400/15 text-emerald-400 border border-emerald-400/20' :
+                      events[selected].status === 'tentative' ? 'bg-amber-400/15 text-amber-400 border border-amber-400/20' :
+                        'bg-slate-400/15 text-slate-400 border border-slate-400/20'}`}>
                     {events[selected].status}
                   </span>
                 </div>
-                
+
                 <div className="glass rounded-xl p-4 border border-white/5 bg-white/[0.02]">
                   <h4 className="text-gold-400 font-display text-xl leading-tight mb-2">{events[selected].title}</h4>
                   <div className="flex flex-col gap-2">
@@ -1051,7 +1051,7 @@ function CTABanner() {
       <div className="overflow-hidden" style={{ height: '560px' }}>
         <div ref={bgRef}>
           <img
-            src="https://images.unsplash.com/photo-1540575467063-178a50c2df87?w=1920&q=90"
+            src="https://images.unsplash.com/photo-1587825140708-dfaf72ae4b04?q=80&w=1170&auto=format&fit=crop&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D"
             alt=""
             className="w-full object-cover" style={{ height: '130%', marginTop: '-15%' }}
           />
