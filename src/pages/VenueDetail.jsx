@@ -8,6 +8,7 @@ import {
 import { venues } from '../data/staticData'
 import { getBookedDaysForVenue, getConflicts } from '../utils/bookingStore'
 import { useScrollReveal } from '../hooks/useScrollReveal'
+import { toast } from 'sonner'
 
 /* ─── Scroll Progress Bar ─────────────────────────────────────────────── */
 function ScrollProgressBar() {
@@ -322,6 +323,47 @@ export default function VenueDetail() {
   const { slug } = useParams()
   const venue     = venues.find(v => v.slug === slug)
   const [activeImg, setActiveImg] = useState(0)
+  const [isLiked, setIsLiked]     = useState(false)
+
+  // Initialize wishlist from localStorage
+  useEffect(() => {
+    if (venue) {
+      const wishlist = JSON.parse(localStorage.getItem('expoinn_wishlist') || '[]')
+      setIsLiked(wishlist.includes(venue.id))
+    }
+  }, [venue])
+
+  const toggleWishlist = () => {
+    const wishlist = JSON.parse(localStorage.getItem('expoinn_wishlist') || '[]')
+    let updated
+    if (isLiked) {
+      updated = wishlist.filter(id => id !== venue.id)
+      toast.info('Removed from wishlist')
+    } else {
+      updated = [...wishlist, venue.id]
+      toast.success('Added to wishlist!')
+    }
+    localStorage.setItem('expoinn_wishlist', JSON.stringify(updated))
+    setIsLiked(!isLiked)
+  }
+
+  const handleShare = () => {
+    const url = window.location.href
+    if (navigator.share) {
+      navigator.share({
+        title: `ExpoInn | ${venue?.name}`,
+        text: `Check out this amazing venue: ${venue?.name}`,
+        url: url
+      }).catch(() => {
+        navigator.clipboard.writeText(url)
+        toast.success('Link copied to clipboard')
+      })
+    } else {
+      navigator.clipboard.writeText(url)
+      toast.success('Link copied to clipboard')
+    }
+  }
+
   const allImages = venue ? [venue.image, ...venue.gallery] : []
 
   if (!venue) return (
@@ -372,10 +414,18 @@ export default function VenueDetail() {
                 </div>
               </div>
               <div className="flex items-center gap-3" data-reveal="fade" data-delay="2">
-                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/70 hover:text-gold-400 transition-all border border-white/05">
-                  <Heart size={20} />
+                <button 
+                  onClick={toggleWishlist}
+                  className={`w-12 h-12 rounded-full glass flex items-center justify-center transition-all border ${
+                    isLiked ? 'text-red-500 border-red-500/30 bg-red-500/10' : 'text-cream/70 border-white/05 hover:text-gold-400'
+                  }`}
+                >
+                  <Heart size={20} fill={isLiked ? "currentColor" : "none"} />
                 </button>
-                <button className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/70 hover:text-gold-400 transition-all border border-white/05">
+                <button 
+                  onClick={handleShare}
+                  className="w-12 h-12 rounded-full glass flex items-center justify-center text-cream/70 hover:text-gold-400 transition-all border border-white/05"
+                >
                   <Share2 size={20} />
                 </button>
               </div>

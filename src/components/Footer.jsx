@@ -19,8 +19,18 @@ export default function Footer() {
               India's premier integrated venue booking platform for events, exhibitions, and corporate gatherings.
             </p>
             <div className="flex gap-3">
-              {[Facebook, Instagram, Linkedin].map((Icon, i) => (
-                <a key={i} href="#" className="w-8 h-8 glass-light rounded flex items-center justify-center text-gold-500/60 hover:text-gold-400 transition-colors">
+              {[
+                { Icon: Facebook, href: 'https://facebook.com/expoinn' },
+                { Icon: Instagram, href: 'https://instagram.com/expo_inn' },
+                { Icon: Linkedin, href: 'https://linkedin.com/company/expoinn' }
+              ].map(({ Icon, href }, i) => (
+                <a 
+                  key={i} 
+                  href={href} 
+                  target="_blank" 
+                  rel="noopener noreferrer"
+                  className="w-8 h-8 glass-light rounded flex items-center justify-center text-gold-500/60 hover:text-gold-400 transition-colors"
+                >
                   <Icon size={14} />
                 </a>
               ))}

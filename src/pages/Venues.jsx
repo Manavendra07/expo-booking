@@ -42,6 +42,7 @@ export default function Venues() {
   const [search, setSearch] = useState('')
   const [selectedType, setSelectedType] = useState('All')
   const [capacity, setCapacity] = useState('')
+  const [sortBy, setSortBy] = useState('Recommended')
   const [showFilters, setShowFilters] = useState(false)
 
   const filtered = venues.filter(v => {
@@ -51,6 +52,11 @@ export default function Venues() {
     const matchType = selectedType === 'All' || v.type === selectedType
     const matchCap = !capacity || v.capacity >= parseInt(capacity)
     return matchSearch && matchType && matchCap
+  }).sort((a, b) => {
+    if (sortBy === 'Capacity: High to Low') return b.capacity - a.capacity
+    if (sortBy === 'Price: Low to High') return a.price - b.price
+    if (sortBy === 'Rating: Premium First') return b.rating - a.rating
+    return 0
   })
 
   return (
@@ -154,7 +160,11 @@ export default function Venues() {
                 </div>
                 <div>
                   <label className="text-gold-500/80 text-[12px] tracking-[0.3em] uppercase mb-3 block">Sort By</label>
-                  <select className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all appearance-none cursor-pointer">
+                  <select 
+                    value={sortBy}
+                    onChange={e => setSortBy(e.target.value)}
+                    className="w-full bg-navy-950/50 border border-gold-500/10 rounded-xl px-4 py-3 text-base text-cream outline-none focus:border-gold-400/30 transition-all appearance-none cursor-pointer"
+                  >
                     <option>Recommended</option>
                     <option>Capacity: High to Low</option>
                     <option>Price: Low to High</option>
@@ -212,9 +222,9 @@ export default function Venues() {
             <h4 className="font-display text-2xl text-cream mb-2">Can't find what you're looking for?</h4>
             <p className="text-cream/70">Our concierge team can help you source the perfect space for your event.</p>
           </div>
-          <button className="btn-outline px-10 py-4 rounded-full text-sm shrink-0">
+          <a href="mailto:concierge@expoinn.com" className="btn-outline px-10 py-4 rounded-full text-sm shrink-0">
             Speak to a Consultant
-          </button>
+          </a>
         </div>
       </div>
     </div>

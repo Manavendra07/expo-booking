@@ -13,9 +13,9 @@ const STORAGE_KEY = 'expoinn_bookings'
 export function getBookings() {
   try {
     const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY) || '[]')
-    return [...bookingRequests, ...stored]
+    return [...bookingRequests, ...stored].reverse()
   } catch {
-    return [...bookingRequests]
+    return [...bookingRequests].reverse()
   }
 }
 
@@ -46,6 +46,19 @@ export function withdrawBooking(id) {
   // Persist only the user portion
   const userPortion = getUserBookings().map(b =>
     b.id === id ? { ...b, status: 'cancelled', eventStatus: 'Cancelled' } : b
+  )
+  sessionStorage.setItem(STORAGE_KEY, JSON.stringify(userPortion))
+  return updated
+}
+
+/** Confirm a tentative booking by ID */
+export function formalizeBooking(id) {
+  const all = getBookings()
+  const updated = all.map(b => (b.id === id ? { ...b, status: 'confirmed' } : b))
+
+  // Persist only the user portion
+  const userPortion = getUserBookings().map(b =>
+    b.id === id ? { ...b, status: 'confirmed' } : b
   )
   sessionStorage.setItem(STORAGE_KEY, JSON.stringify(userPortion))
   return updated

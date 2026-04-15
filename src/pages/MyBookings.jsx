@@ -11,7 +11,7 @@ import html2canvas from 'html2canvas'
 import { jsPDF } from 'jspdf'
 import { toast } from 'sonner'
 import { venues, industries } from '../data/staticData'
-import { getBookings, withdrawBooking } from '../utils/bookingStore'
+import { getBookings, withdrawBooking, formalizeBooking } from '../utils/bookingStore'
 import { useScrollReveal } from '../hooks/useScrollReveal'
 
 /* ─── Scroll Progress Bar ────────────────────────────────────────────── */
@@ -42,7 +42,7 @@ const statusConfig = {
 }
 
 /* ─── Full Booking Detail Modal ──────────────────────────────────────── */
-function BookingDetailModal({ booking, onClose, onWithdraw }) {
+function BookingDetailModal({ booking, onClose, onWithdraw, onFormalize }) {
   const st = statusConfig[booking.status] || statusConfig.tentative
   const StatusIcon = st.icon
   const pdfRef = useRef(null)
@@ -207,7 +207,10 @@ function BookingDetailModal({ booking, onClose, onWithdraw }) {
         <div className="relative z-10 px-8 pb-8 pt-4 border-t border-white/05 flex items-center justify-between gap-4">
           <div className="flex gap-3">
             {booking.status === 'tentative' && (
-              <button className="btn-gold px-6 py-2.5 rounded-2xl text-xs font-bold tracking-widest uppercase flex items-center gap-2">
+              <button 
+                onClick={() => onFormalize(booking.id)}
+                className="btn-gold px-6 py-2.5 rounded-2xl text-xs font-bold tracking-widest uppercase flex items-center gap-2"
+              >
                 <CheckCircle size={13} /> Formalize
               </button>
             )}
@@ -326,7 +329,7 @@ function BookingDetailModal({ booking, onClose, onWithdraw }) {
 }
 
 /* ─── Booking Card (list view) ───────────────────────────────────────── */
-function BookingCard({ booking, idx, onWithdraw, onViewDetail }) {
+function BookingCard({ booking, idx, onWithdraw, onFormalize, onViewDetail }) {
   const [expanded, setExpanded] = useState(false)
   const st = statusConfig[booking.status] || statusConfig.tentative
   const StatusIcon = st.icon
@@ -436,7 +439,10 @@ function BookingCard({ booking, idx, onWithdraw, onViewDetail }) {
           <div className="flex flex-wrap items-center justify-between gap-4">
             <div className="flex flex-wrap gap-3">
               {booking.status === 'tentative' && (
-                <button className="btn-gold px-7 py-2.5 rounded-2xl text-[11px] font-bold tracking-widest uppercase flex items-center gap-2">
+                <button 
+                  onClick={() => onFormalize(booking.id)}
+                  className="btn-gold px-7 py-2.5 rounded-2xl text-[11px] font-bold tracking-widest uppercase flex items-center gap-2"
+                >
                   <CheckCircle size={13} /> Formalize Booking
                 </button>
               )}
@@ -707,6 +713,17 @@ export default function MyBookings() {
     setWithdrawConfirm(null)
   }, [loadBookings])
 
+  // ── Handle formalize ──
+  const handleFormalize = useCallback((id) => {
+    formalizeBooking(id)
+    loadBookings()
+    setDetailBooking(null)
+    toast.success('Booking formally confirmed!', {
+      description: 'Your slot is now secured.',
+      icon: <Sparkles className="text-gold-400" size={16} />
+    })
+  }, [loadBookings])
+
   // ── Filtered bookings ──
   const filtered = useMemo(() => {
     return allBookings.filter(b => {
@@ -747,6 +764,10 @@ export default function MyBookings() {
           onClose={() => setDetailBooking(null)}
           onWithdraw={(id) => {
             handleWithdraw(id)
+            setDetailBooking(null)
+          }}
+          onFormalize={(id) => {
+            handleFormalize(id)
             setDetailBooking(null)
           }}
         />
@@ -981,6 +1002,7 @@ export default function MyBookings() {
                     idx={idx}
                     onViewDetail={setDetailBooking}
                     onWithdraw={(id) => setWithdrawConfirm(id)}
+                    onFormalize={handleFormalize}
                   />
                 ))}
               </div>

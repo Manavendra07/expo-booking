@@ -301,7 +301,13 @@ export default function BookingForm() {
                       {venues.map(v => (
                         <button
                           key={v.id}
-                          onClick={() => { set('venueId', String(v.id)); set('hallSelection', '') }}
+                          onClick={() => {
+                            set('venueId', String(v.id));
+                            set('hallSelection', '');
+                            setTimeout(() => {
+                              document.getElementById('hall-selection-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                            }, 150);
+                          }}
                           className={`text-left rounded-3xl overflow-hidden border-2 transition-all duration-500 group relative ${
                             form.venueId === String(v.id)
                               ? 'border-gold-400 gold-glow'
@@ -334,7 +340,7 @@ export default function BookingForm() {
 
                     {/* Hall Selection */}
                     {selectedVenue && (
-                      <div className="space-y-3">
+                      <div id="hall-selection-container" className="space-y-3">
                         <label className="text-gold-400/70 text-sm tracking-[0.3em] uppercase ml-2 flex items-center gap-2">
                           <Layers size={13} /> Hall Selection *
                         </label>
